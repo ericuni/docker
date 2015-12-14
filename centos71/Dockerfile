@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM index.tenxcloud.com/tenxcloud/centos:latest
 ## 7.1.1503
 
 ## author info
