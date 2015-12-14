@@ -3,10 +3,10 @@
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-v /dev/snd:/dev/snd \
 #	-e DISPLAY=unix$DISPLAY \
-#	jess/tor-browser
+#	tor-browser
 #
-FROM debian:jessie
-MAINTAINER Jessica Frazelle <jess@docker.com>
+FROM debian:latest
+MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
