@@ -2,7 +2,7 @@ FROM index.tenxcloud.com/tenxcloud/centos:latest
 ## 7.1.1503
 
 ## author info
-MAINTAINER Eric Wang, wangchaogo1990@gmail.com
+MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 ## configure repos
 ADD . /data
