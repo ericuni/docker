@@ -14,9 +14,8 @@
 FROM debian:latest
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
-RUN apt-get update && apt-get install -y \
-	libreoffice \
-	--no-install-recommends \
+RUN apt-get update
+RUN apt-get install -y libreoffice --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT [ "libreoffice" ]
