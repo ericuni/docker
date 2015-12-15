@@ -1,17 +1,18 @@
 # Run Libreoffice in a container
+## orgin: https://github.com/jfrazelle/dockerfiles
 
 # docker run -d \
 #	-v /etc/localtime:/etc/localtime:ro \
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-e DISPLAY=unix$DISPLAY \
-#	-v $HOME/slides:/root/slides \
+#	-v $HOME:/root/ \
 #	-e GDK_SCALE \
 #	-e GDK_DPI_SCALE \
 #	--name libreoffice \
-#	jess/libreoffice
-#
-FROM debian:jessie
-MAINTAINER Jessica Frazelle <jess@docker.com>
+#	libreoffice
+
+FROM debian:latest
+MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update && apt-get install -y \
 	libreoffice \
