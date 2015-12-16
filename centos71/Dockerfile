@@ -1,4 +1,4 @@
-FROM centos:wheezy
+FROM centos:latest
 ## 7.1.1503
 
 ## author info
