@@ -14,4 +14,3 @@
 FROM debian:jessie
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
-ENTRYPOINT [ "/bin/bash" ]
