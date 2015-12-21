@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 	python-matplotlib python-matplotlib-data python-matplotlib-doc \
 	&& rm -rf /var/lib/apt/lists/*
 
-ADD https://github.com/ericuni/note/blob/master/conf/.bashrc /root/.bashrc
-ADD https://github.com/ericuni/note/blob/master/conf/.vimrc /root/.vimrc
+ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
+ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
 ## tag: dev
 
