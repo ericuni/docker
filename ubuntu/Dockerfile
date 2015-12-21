@@ -1,3 +1,10 @@
+## docker run -it
+## 	-v /etc/localtime:/etc/localtime:ro
+## 	-v /tmp/.X11-unix:/tmp/.X11-unix
+## 	-e DISPLAY=unix$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE
+## 	-v $HOME:/data/
+## 	--name plot
+
 FROM ubuntu:14.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 ## tag: 14.04
