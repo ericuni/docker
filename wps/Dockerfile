@@ -15,8 +15,9 @@
 FROM ubuntu:14.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
-## ADD http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb /src/wps.deb
-## dpkg -i src/wps.deb && rm -rf /src/*.deb \
-RUN apt-get update && apt-get install -y wps-office
-	&& rm -rf /var/lib/apt/lists/*
+ADD http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb /src/wps.deb
+
+RUN apt-get update && dpkg -i src/wps.deb || apt-get -fy install
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /src/*.deb \
 
