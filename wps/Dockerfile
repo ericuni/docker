@@ -1,0 +1,19 @@
+# docker run -d \
+#	-v /etc/localtime:/etc/localtime:ro \
+#	-v /tmp/.X11-unix:/tmp/.X11-unix \
+#	-e DISPLAY=unix$DISPLAY \
+#	-v $HOME:/data/ \
+#	-e GDK_SCALE \
+#	-e GDK_DPI_SCALE \
+#	--name wps \
+#	wps
+
+## wps: office
+## wpp: prenetation
+## et: spreadsheet
+
+FROM ubuntu:14.04
+MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
+
+RUN dpkg -i http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb
+
