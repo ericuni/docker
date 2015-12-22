@@ -17,7 +17,18 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 ADD http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb /src/wps.deb
 
-RUN apt-get update && dpkg -i src/wps.deb || apt-get -fy install
-	&& rm -rf /var/lib/apt/lists/* \
+RUN apt-get update && apt-get install -y \
+	fontconfig-config fonts-dejavu-core krb5-locales libavahi-client3 \
+	libavahi-common-data libavahi-common3 libcups2 libdrm-intel1 libdrm-nouveau2 \
+	libdrm-radeon1 libelf1 libfontconfig1 libfreetype6 libgl1-mesa-dri \
+	libgl1-mesa-glx libglapi-mesa libglib2.0-0 libglib2.0-data libglu1-mesa \
+	libgssapi-krb5-2 libice6 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 \
+	libllvm3.4 libpciaccess0 libsm6 libtxc-dxtn-s2tc0 libx11-6 libx11-data \
+	libx11-xcb1 libxau6 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 \
+	libxcb-sync1 libxcb1 libxdamage1 libxdmcp6 libxext6 libxfixes3 libxml2 \
+	libxrender1 libxshmfence1 libxxf86vm1 sgml-base shared-mime-info x11-common \
+	xml-core \
+	&& dpkg -i src/wps.deb \
 	&& rm -rf /src/*.deb \
+	&& rm -rf /var/lib/apt/lists/*
 
