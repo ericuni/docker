@@ -15,9 +15,11 @@ RUN apt-get update && apt-get install -y \
 	python-pip \
 	python-numpy python-scipy \
 	python-matplotlib python-matplotlib-data python-matplotlib-doc \
+	r-base r-base-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
+ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.Rprofile /root/.Rprofile
 ## tag: dev
 
