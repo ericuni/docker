@@ -10,6 +10,8 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 ## tag: 14.04
 
 ENV LANG C.UTF-8
+
+## r repo
 RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list \
 	&& echo "deb http://mirror.neu.edu.cn/ubuntu/ precise-backports main restricted universe" >> /etc/apt/sources.list \
 	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
@@ -24,14 +26,17 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Set default CRAN repo
-RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
-	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
-	&& echo '"\e[5~": history-search-backward' >> /etc/inputrc \
-	&& echo '"\e[6~": history-search-backward' >> /etc/inputrc
+## RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
+## 	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
+## 	&& echo '"\e[5~": history-search-backward' >> /etc/inputrc \
+## 	&& echo '"\e[6~": history-search-backward' >> /etc/inputrc
 
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.Rprofile /root/.Rprofile
+
+ADD package.r /src/package.r
+RUN Rscript /root/package.r && rm -rf /src
 
 CMD ["/bin/bash"]
 ## tag: dev
