@@ -26,9 +26,10 @@ RUN apt-get install -y libx11-xcb1 libxau6 libxcb-dri2-0 libxcb-dri3-0 libxcb-gl
 RUN apt-get install -y libxcb-sync1 libxcb1 libxdamage1 libxdmcp6 libxext6 libxfixes3 libxml2
 RUN apt-get install -y libxrender1 libxshmfence1 libxxf86vm1 sgml-base shared-mime-info x11-common
 RUN apt-get install -y xml-core
+RUN apt-get install -y xdg-utils
 
 ADD http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb /src/wps.deb
 RUN dpkg -i src/wps.deb
-RUN rm -rf /src/*.deb \
+RUN rm -rf /src/*.deb
 RUN rm -rf /var/lib/apt/lists/*
 
