@@ -9,7 +9,7 @@ FROM ubuntu:14.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 ## tag: 14.04
 
-env LANG=C.UTF-8
+ENV LANG C.UTF-8
 RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list \
 	&& echo "deb http://mirror.neu.edu.cn/ubuntu/ precise-backports main restricted universe" >> /etc/apt/sources.list \
 	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
