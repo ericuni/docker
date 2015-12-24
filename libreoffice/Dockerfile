@@ -16,7 +16,10 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 ENV LANG C.UTF-8
 
-RUN apt-get update && apt-get install -y --no-install-recommends libreoffice \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	libreoffice \
+	libreoffice-l10n-zh-cn \
+	libreoffice-help-zh-cn \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT [ "libreoffice" ]
