@@ -35,8 +35,8 @@ ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.ba
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.Rprofile /root/.Rprofile
 
-ADD package.r /src/package.r
-RUN Rscript /root/package.r && rm -rf /src
+ADD /package.r /src/package.r
+RUN Rscript /src/package.r && rm -rf /src
 
 CMD ["/bin/bash"]
 ## tag: dev
