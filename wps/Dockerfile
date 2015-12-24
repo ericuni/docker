@@ -16,7 +16,7 @@ FROM ubuntu:14.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
-USER eric
+RUN useradd eric
 RUN mkdir -p /home/eric/Desktop
 RUN apt-get install -y fontconfig-config fonts-dejavu-core krb5-locales libavahi-client3
 RUN apt-get install -y libavahi-common-data libavahi-common3 libcups2 libdrm-intel1 libdrm-nouveau2
