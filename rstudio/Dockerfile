@@ -22,11 +22,33 @@ RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/a
 	&& apt-get update && apt-get install -y \
 		r-base \
 		r-base-dev \
-		libjpeg62 \
+		ca-certificates \
+		fcitx-frontend-qt5 \
+		fcitx-modules \
+		fcitx-module-dbus \
 		libedit2 \
+		libgl1-mesa-dri \
+		libgl1-mesa-glx \
+		libgstreamer0.10-0 \
+		libgstreamer-plugins-base0.10-0 \
+		libjpeg62 \
+		libjpeg-dev \
+		libjpeg62-turbo \
+		libjpeg62-turbo-dev \
+		libpresage1 \
+		libpresage-data \
+		libqt5core5a \
+		libqt5dbus5 \
+		libqt5gui5 \
+		libqt5network5 \
+		libqt5printsupport5 \
+		libqt5webkit5 \
+		libqt5widgets5 \
+		libtiff5 \
+		libxcomposite1 \
 		libxslt1.1 \
-		libxslt1-dev \
-		python-libxslt1 \
+		littler \
+		locales \
 	&& dpkg -i '/src/rstudio.deb' \
 	&& apt-get install -fy \
 	&& ln -sf /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio \
