@@ -24,6 +24,9 @@ RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/a
 		r-base-dev \
 		libjpeg62 \
 		libedit2 \
+		libxslt1.1 \
+		libxslt1-dev \
+		python-libxslt1 \
 	&& dpkg -i '/src/rstudio.deb' \
 	&& apt-get install -fy \
 	&& ln -sf /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio \
