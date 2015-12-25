@@ -14,7 +14,6 @@ RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak \
 	&& yum install -y yum-utils \
 	&& yum-config-manager --disable system-container \
 
-
 ## install soft
 RUN yum clean all && yum makecache && yum install -y net-tools \
 	&& yum clean all
