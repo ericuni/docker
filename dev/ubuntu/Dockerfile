@@ -4,7 +4,7 @@
 ## 	-e DISPLAY=unix$DISPLAY
 ## 	-e GDK_SCALE
 ## 	-e GDK_DPI_SCALE
-## 	-v $HOME/git:/root/git
+## 	-v $HOME:/root
 ## 	--name dev
 ## 	ubuntu:dev
 
@@ -12,6 +12,8 @@ FROM ubuntu:14.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 ENV LANG C.UTF-8
+WORKDIR /root
+CMD ["/bin/bash"]
 
 ## vim
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
@@ -43,6 +45,8 @@ ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.Rprofile /root/.
 ADD package.r /src/package.r
 RUN Rscript /src/package.r && rm -rf /src
 
-WORKDIR /root
-CMD ["/bin/bash"]
+## tcl
+RUN apt-get update \
+	&& apt-get install -y tcl8.6 \
+	&& rm -rf /var/lib/apt/lists/*
 
