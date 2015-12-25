@@ -43,5 +43,6 @@ ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.Rprofile /root/.
 ADD package.r /src/package.r
 RUN Rscript /src/package.r && rm -rf /src
 
+WORKDIR /root
 CMD ["/bin/bash"]
 
