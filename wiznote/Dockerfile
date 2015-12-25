@@ -4,7 +4,7 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 RUN echo "deb http://ppa.launchpad.net/wiznote-team/ppa/ubuntu trusty main" >> /etc/apt/sources.list \
 	&& echo "deb-src http://ppa.launchpad.net/wiznote-team/ppa/ubuntu trusty main" >> /etc/apt/sources.list \
 	&& apt-get update \
-	&& apt-get install -y wiznote \
+	&& apt-get install -y --force-yes wiznote \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT [ "WizNote" ]
