@@ -19,8 +19,11 @@ ADD package.r /src/package.r
 RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list \
 	&& echo "deb http://mirror.neu.edu.cn/ubuntu/ precise-backports main restricted universe" >> /etc/apt/sources.list \
 	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 \
-	&& apt-get update \
-	&& apt-get install -y r-base r-base-dev \
+	&& apt-get update && apt-get install -y \
+		r-base \
+		r-base-dev \
+		libjpeg62 \
+		libedit2 \
 	&& dpkg -i '/src/rstudio.deb' \
 	&& apt-get install -fy \
 	&& ln -sf /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio \
