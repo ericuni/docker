@@ -33,8 +33,8 @@ RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/a
 		libgstreamer-plugins-base0.10-0 \
 		libjpeg62 \
 		libjpeg-dev \
-		libjpeg62-turbo \
-		libjpeg62-turbo-dev \
+		libjpeg-turbo8 \
+		libjpeg-turbo8-dev \
 		libpresage1 \
 		libpresage-data \
 		libqt5core5a \
