@@ -49,12 +49,18 @@ RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/a
 		libxslt1.1 \
 		littler \
 		locales \
+	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& locale-gen en_US.utf8 \
+	&& /usr/sbin/update-locale LANG=en_US.UTF-8 \
 	&& dpkg -i '/src/rstudio.deb' \
 	&& apt-get install -fy \
 	&& ln -sf /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio \
 	&& Rscript /src/package.r \
 	&& rm -rf /src \
 	&& rm -rf /var/lib/apt/lists/*
+
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
 
 ENTRYPOINT [ "rstudio" ]
 
