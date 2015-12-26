@@ -1,7 +1,7 @@
 from ubuntu:14.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
-RUN apt-get update && apt-install -y wget \
+RUN apt-get update && apt-get install -y wget \
 	&& wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz -O /src/texlive.tar.gz \
 	&& cd /src \
 	&& tar zxvf texlive.tar.gz \
