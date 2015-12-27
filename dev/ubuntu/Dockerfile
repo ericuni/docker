@@ -11,7 +11,7 @@
 FROM ubuntu:14.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
-ENV LANG C.UTF-8
+## ENV LANG C.UTF-8
 WORKDIR /root
 CMD ["/bin/bash"]
 
