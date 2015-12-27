@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y wget \
 	&& PATH=$PATH:/opt/texlive/2015/bin/x86_64-linux \
 	&& rm -rf /src \
 	&& apt-get purge -y wget \
-	&& apt-get autoremove \
+	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 CMD ["/bin/bash"]
