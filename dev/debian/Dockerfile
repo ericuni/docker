@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		python-numpy python-scipy python-sympy \
 		python-matplotlib \
+		python-tk \
 	&& rm -rf /var/lib/apt/lists/*
 
 ## tcl
