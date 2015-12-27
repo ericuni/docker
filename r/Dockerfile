@@ -7,7 +7,7 @@ ADD package.r /src/package.r
 RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list \
 	&& echo "deb http://mirror.neu.edu.cn/ubuntu/ precise-backports main restricted universe" >> /etc/apt/sources.list \
 	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 \
-	&& apt-get update && apt-get install -y \
+	&& apt-get update && apt-get install -y --no-install-recommends \
 		r-base \
 		r-base-dev \
 	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \

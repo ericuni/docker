@@ -5,8 +5,7 @@ ENV LANG C.UTF-8
 RUN echo "deb http://ppa.launchpad.net/wiznote-team/ppa/ubuntu trusty main" >> /etc/apt/sources.list \
 	&& echo "deb-src http://ppa.launchpad.net/wiznote-team/ppa/ubuntu trusty main" >> /etc/apt/sources.list \
 	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 29DBDA512A74C8B8 \
-	&& apt-get update \
-	&& apt-get install -y \
+	&& apt-get update && apt-get install -y --no-install-recommends \
 		language-pack-zh-hans-base \
 		language-pack-zh-hans \
 		language-pack-gnome-zh-hans-base \
