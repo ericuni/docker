@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM debian:jessie
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 ADD texlive.profile /src/texlive.profile
