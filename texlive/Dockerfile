@@ -9,8 +9,10 @@ RUN apt-get update && apt-get install -y wget \
 	&& tar zxvf texlive.tar.gz \
 	&& cd install-tl* \
 	&& ./install-tl -profile /src/texlive.profile \
+	&& PATH=$PATH:/opt/texlive/2015/bin/x86_64-linux \
 	&& rm -rf /src \
 	&& apt-get purge -y wget \
+	&& apt-get autoremove \
 	&& rm -rf /var/lib/apt/lists/*
 
 CMD ["/bin/bash"]
