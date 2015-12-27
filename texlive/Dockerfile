@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y wget \
 	&& cd /src \
 	&& tar zxvf texlive.tar.gz \
 	&& cd install-tl* \
-	&& ./install-tl -y \
+	&& ./install-tl -profile texlive.profile \
 	&& rm -rf /src \
 	&& apt-get purge -y wget \
 	&& rm -rf /var/lib/apt/lists/*
