@@ -34,17 +34,6 @@ RUN apt-get update \
 	python-matplotlib python-matplotlib-data python-matplotlib-doc \
 	&& rm -rf /var/lib/apt/lists/*
 
-## R
-RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list \
-	&& echo "deb http://mirror.neu.edu.cn/ubuntu/ precise-backports main restricted universe" >> /etc/apt/sources.list \
-	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-RUN apt-get update \
-	&& apt-get install -y r-base r-base-dev \
-	&& rm -rf /var/lib/apt/lists/*
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.Rprofile /root/.Rprofile
-ADD package.r /src/package.r
-RUN Rscript /src/package.r && rm -rf /src
-
 ## tcl
 RUN apt-get update \
 	&& apt-get install -y tcl8.6 \
