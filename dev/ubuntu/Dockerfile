@@ -30,7 +30,7 @@ RUN apt-get update \
 ## Python
 RUN apt-get update \
 	&& apt-get install -y python-pip \
-	python-numpy python-scipy \
+	python-numpy python-scipy python-sympy \
 	python-matplotlib python-matplotlib-data python-matplotlib-doc \
 	&& rm -rf /var/lib/apt/lists/*
 
