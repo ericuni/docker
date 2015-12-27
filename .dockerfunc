@@ -39,12 +39,13 @@ dev(){
 	docker run -it \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-v /usr/share/fonts:/usr/share/fonts \
 		-e DISPLAY=unix$DISPLAY \
 		-v $HOME:/root \
 		-e GDK_SCALE \
 		-e GDK_DPI_SCALE \
 		--name dev \
-		ubuntu:dev
+		debian:dev
 }
 
 rstudio(){
@@ -53,6 +54,7 @@ rstudio(){
 	docker run -d \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-v /usr/share/fonts:/usr/share/fonts \
 		-e DISPLAY=unix$DISPLAY \
 		-v $HOME:/root \
 		-e GDK_SCALE \
