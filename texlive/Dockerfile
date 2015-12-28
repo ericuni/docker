@@ -38,7 +38,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		texlive-extra-utils \
 		latex-cjk-all \
 		texlive-font-utils \
-		xindy \
 		texlive-pstricks \
 		purifyeps \
 		latexmk \
