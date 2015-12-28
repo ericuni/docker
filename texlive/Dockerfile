@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:sid
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -23,6 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		texlive-science \
 		texlive-plain-extra  \
 		lmodern \
+	&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
 		info  \
 		latex-sanskrit \
 		texlive-omega  \
