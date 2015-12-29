@@ -1,9 +1,6 @@
 FROM debian:jessie
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
-WORKDIR /root
-CMD ["/bin/bash"]
-
 ## vim
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc

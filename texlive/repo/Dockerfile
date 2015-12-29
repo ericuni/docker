@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM debian:jessie
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
