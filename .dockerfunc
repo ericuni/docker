@@ -97,8 +97,8 @@ function debian(){
 		debian:jessie
 }
 
-function texlive(){
-	container_start texlive
+function centos(){
+	container_start centos
 	if [ $? -eq 0 ]
 	then
 		return 0
@@ -116,9 +116,33 @@ function texlive(){
 		-e LANG=C.UTF-8 \
 		-v $HOME:/root \
 		-w /root \
+		--hostname centos \
+		--name centos \
+		centos:7.1
+}
+
+function texlive(){
+	container_start texlive
+	if [ $? -eq 0 ]
+	then
+		return 0
+	fi
+
+	echo "creating..." >&2
+
+	docker run -it \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-v /usr/share/fonts:/usr/share/fonts \
+		-e DISPLAY=unix$DISPLAY \
+		-e GDK_SCALE \
+		-e GDK_DPI_SCALE \
+		-e LANG=C.UTF-8 \
+		-v $HOME/git:/root/git \
+		-w /root \
 		--hostname texlive \
 		--name texlive \
-		test:latest
+		texlive:base
 }
 
 ## GUI env
