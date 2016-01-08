@@ -5,26 +5,26 @@ index="index.tenxcloud.com/ericuni"
 
 # Helper Functions
 function dcleanup(){
-	docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
-	docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+	sudo docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+	sudo docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
 }
 
 function container_start(){
 	local container=$1
-	docker inspect $container 1>/dev/null 2>&1
+	sudo docker inspect $container 1>/dev/null 2>&1
 	if [ $? -eq 0 ]
 	then
 		local state=`docker inspect --format "{{.State.Running}}" $container`
 		if [ "x$state" == "xtrue" ]
 		then
 			echo "$container is running, removing..." >&2
-			docker stop $container
-			docker rm $container
+			sudo docker stop $container
+			sudo docker rm $container
 			return 1
 		else
 			echo "$container is not running, attaching..." >&2
-			docker start $container
-			docker attach $container
+			sudo docker start $container
+			sudo docker attach $container
 			return 0
 		fi
 	else
@@ -56,7 +56,7 @@ function dev(){
 	fi
 
 	echo "creating..." >&2
-	docker run -it \
+	sudo docker run -it \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-v /usr/share/fonts:/usr/share/fonts \
@@ -82,7 +82,7 @@ function debian(){
 
 	echo "creating..." >&2
 
-	docker run -it \
+	sudo docker run -it \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-v /usr/share/fonts:/usr/share/fonts \
@@ -106,7 +106,7 @@ function centos(){
 
 	echo "creating..." >&2
 
-	docker run -it \
+	sudo docker run -it \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-v /usr/share/fonts:/usr/share/fonts \
@@ -130,19 +130,18 @@ function texlive(){
 
 	echo "creating..." >&2
 
-	docker run -it \
+	sudo docker run -it \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /usr/share/fonts:/usr/share/fonts \
 		-e DISPLAY=unix$DISPLAY \
 		-e GDK_SCALE \
 		-e GDK_DPI_SCALE \
 		-e LANG=C.UTF-8 \
 		-v $HOME/git:/root/git \
-		-w /root \
+		-w /root/git \
 		--hostname texlive \
 		--name texlive \
-		texlive:base
+		ubuntu:texlive
 }
 
 ## GUI env
