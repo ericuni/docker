@@ -9,55 +9,15 @@
 #	ubuntu:rstudio
 #
 
-FROM ubuntu:14.04
+FROM ericuni/centos:latest
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
-ADD https://download1.rstudio.org/rstudio-0.99.484-amd64.deb /src/rstudio.deb
+ADD https://download1.rstudio.org/rstudio-0.99.491-x86_64.rpm /src/rstudio.rpm
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.Rprofile /root/.Rprofile
 ADD package.r /src/package.r
 
-RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list \
-	&& echo "deb http://mirror.neu.edu.cn/ubuntu/ precise-backports main restricted universe" >> /etc/apt/sources.list \
-	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 \
-	&& apt-get update && apt-get install -y --no-install-recommends \
-		r-base \
-		r-base-dev \
-		ca-certificates \
-		fcitx-frontend-qt5 \
-		fcitx-modules \
-		fcitx-module-dbus \
-		libedit2 \
-		libgl1-mesa-dri \
-		libgl1-mesa-glx \
-		libgstreamer0.10-0 \
-		libgstreamer-plugins-base0.10-0 \
-		libjpeg62 \
-		libjpeg-dev \
-		libjpeg-turbo8 \
-		libjpeg-turbo8-dev \
-		libpresage1 \
-		libpresage-data \
-		libqt5core5a \
-		libqt5dbus5 \
-		libqt5gui5 \
-		libqt5network5 \
-		libqt5printsupport5 \
-		libqt5webkit5 \
-		libqt5widgets5 \
-		libtiff5 \
-		libxcomposite1 \
-		libxslt1.1 \
-		littler \
-		locales \
-	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-	&& locale-gen en_US.utf8 \
-	&& /usr/sbin/update-locale LANG=en_US.UTF-8 \
-	&& dpkg -i '/src/rstudio.deb' \
-	&& apt-get install -fy \
-	&& ln -sf /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio \
-	&& Rscript /src/package.r \
-	&& rm -rf /src \
-	&& rm -rf /var/lib/apt/lists/*
+RUN yum install -y R \
+	&& yum localinstall -y /src/rstudio.rpm
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
