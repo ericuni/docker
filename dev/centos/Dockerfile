@@ -15,11 +15,5 @@ RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak \
 	&& yum-config-manager --disable system-container \
 
 ## install soft
-RUN yum clean all && yum makecache && yum install -y net-tools \
-	&& yum clean all
-
-## add new user
-RUN useradd eric
-WORKDIR /home/eric
-CMD /bin/bash
+RUN yum install -y net-tools && yum clean all
 
