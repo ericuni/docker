@@ -33,6 +33,17 @@ function container_start(){
 	fi
 }
 
+function container_remove(){
+	local container=$1
+	docker inspect $container 1>/dev/null 2>&1
+	if [ $? -eq 0 ]
+	then
+		docker rm $container
+	else
+		echo "$container does not exist" >&2
+	fi
+}
+
 function relies_on(){
 	local containers=$@
 
@@ -118,7 +129,7 @@ function centos(){
 		-w /root \
 		--hostname centos \
 		--name centos \
-		centos:7.1
+		centos:7.2
 }
 
 function texlive(){
@@ -146,6 +157,13 @@ function texlive(){
 
 ## GUI env
 function rstudio(){
+	local container="rstudio"
+	container_remove $container
+	if [ $? -ne 0 ]
+	then
+		echo "remove $container error"
+	fi
+
 	docker run -d \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -154,8 +172,9 @@ function rstudio(){
 		-v $HOME:/root \
 		-e GDK_SCALE \
 		-e GDK_DPI_SCALE \
-		--name rstudio \
-		$index/rstudio:latest
+		--name $container \
+		centos:rstudio \
+		/usr/bin/rstudio
 }
 
 function wiznote(){
