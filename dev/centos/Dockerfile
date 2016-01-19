@@ -6,8 +6,7 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 ## configure repos
 ADD . /data
-RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak \
-	&& mv /data/repo/* /etc/yum.repos.d \
+RUN mv /data/repo/* /etc/yum.repos.d \
 	&& rm -rf /data \
 	&& yum localinstall -y http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm \
 	&& yum localinstall -y http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm \
