@@ -22,5 +22,3 @@ RUN yum install -y R \
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-ENTRYPOINT [ "rstudio" ]
-
