@@ -29,7 +29,6 @@ RUN apt-get update && apt-get install -y \
 	libjpeg-dev \
 	libjpeg62-turbo \
 	libjpeg62-turbo-dev \
-	libpresage1 \
 	libpresage-data \
 	libqt5core5a \
 	libqt5dbus5 \
