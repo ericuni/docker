@@ -14,7 +14,7 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 ADD https://download1.rstudio.org/rstudio-0.99.484-amd64.deb /src/rstudio.deb
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.Rprofile /root/.Rprofile
-ADD package.r /src/package.r
+## ADD package.r /src/package.r
 
 RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list \
 	&& echo "deb http://mirror.neu.edu.cn/ubuntu/ precise-backports main restricted universe" >> /etc/apt/sources.list \
@@ -52,9 +52,9 @@ RUN echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu trusty/" >> /etc/a
 	&& dpkg -i '/src/rstudio.deb' \
 	&& apt-get install -fy \
 	&& ln -sf /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio \
-	&& Rscript /src/package.r \
 	&& rm -rf /src \
 	&& rm -rf /var/lib/apt/lists/*
+## 	&& Rscript /src/package.r \
 
 ENTRYPOINT [ "rstudio" ]
 
