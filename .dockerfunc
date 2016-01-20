@@ -35,10 +35,10 @@ function container_start(){
 
 function container_remove(){
 	local container=$1
-	docker inspect $container 1>/dev/null 2>&1
+	sudo docker inspect $container 1>/dev/null 2>&1
 	if [ $? -eq 0 ]
 	then
-		docker rm $container
+		sudo docker rm $container
 	else
 		echo "$container does not exist" >&2
 	fi
@@ -164,7 +164,7 @@ function rstudio(){
 		echo "remove $container error"
 	fi
 
-	docker run -d \
+	sudo docker run -d \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-v /usr/share/fonts:/usr/share/fonts \
@@ -173,8 +173,7 @@ function rstudio(){
 		-e GDK_SCALE \
 		-e GDK_DPI_SCALE \
 		--name $container \
-		centos:rstudio \
-		/usr/bin/rstudio
+		$index/rstudio
 }
 
 function wiznote(){
