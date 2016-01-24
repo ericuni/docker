@@ -29,6 +29,9 @@ RUN apt-get install -y --no-install-recommends \
 		python-numpy python-scipy python-sympy \
 		python-matplotlib \
 		python-tk
+RUN apt-get install -y --no-install-recommends \
+		pip
+RUN pip install asstosrt
 
 ## tcl
 RUN apt-get install -y --no-install-recommends \
