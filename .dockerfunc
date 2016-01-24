@@ -38,6 +38,7 @@ function container_remove(){
 	sudo docker inspect $container 1>/dev/null 2>&1
 	if [ $? -eq 0 ]
 	then
+		echo "romving container $container" >&2
 		sudo docker rm $container
 	else
 		echo "$container does not exist" >&2
@@ -164,6 +165,7 @@ function rstudio(){
 		echo "remove $container error"
 	fi
 
+	echo "starting $container in background" >&2
 	sudo docker run -d \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
