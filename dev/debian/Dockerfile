@@ -30,7 +30,7 @@ RUN apt-get install -y --no-install-recommends \
 		python-matplotlib \
 		python-tk
 RUN apt-get install -y --no-install-recommends \
-		pip
+		python-pip
 RUN pip install asstosrt
 
 ## tcl
