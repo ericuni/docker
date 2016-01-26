@@ -153,7 +153,7 @@ function texlive(){
 		-w /root/git \
 		--hostname texlive \
 		--name texlive \
-		ubuntu:texlive
+		debian:texlive
 }
 
 ## GUI env
