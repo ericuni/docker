@@ -3,11 +3,13 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
 
-## vim
+## tool
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
+ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.tmux.conf /root/.tmux.conf
 RUN apt-get install -y --no-install-recommends \
-		vim
+		vim \
+		tmux
 
 ## C famliy
 RUN apt-get install -y --no-install-recommends \
