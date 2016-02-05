@@ -14,3 +14,9 @@ ADD ./winfont.tar.gz /usr/share/fonts/
 
 RUN PATH=$PATH:/root/opt/texlive/2015/bin/x86_64-linux/
 
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		python-numpy python-scipy python-sympy \
+		python-matplotlib \
+		python-tk \
+	&& rm -rf /var/lib/apt/lists/*
