@@ -14,6 +14,7 @@ RUN apt-get install -y --no-install-recommends \
 ## C famliy
 RUN apt-get install -y --no-install-recommends \
 		gcc g++ clang \
+		gdb \
 		make
 RUN apt-get install -y --no-install-recommends \
 		libssl-dev \
