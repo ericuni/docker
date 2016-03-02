@@ -10,6 +10,19 @@ function dcleanup(){
 }
 
 function container_start(){
+	## start the docker service if needed
+	sudo service docker status | grep start >/dev/null 2>&1 ## status output: docker start/running, docker stop/waiting
+	if [ $? -eq 1 ]
+	then
+		echo "docker service is not running, starting..." >&2
+		sudo service docker start >/dev/null 2>&1
+		if [ $? -ne 0 ]
+		then
+			echo "start docker service error" >&2
+			exit 1
+		fi
+	fi
+
 	local container=$1
 	sudo docker inspect $container 1>/dev/null 2>&1
 	if [ $? -eq 0 ]
@@ -58,7 +71,6 @@ function relies_on(){
 	done
 }
 
-# Container Aliases
 ## terminal env
 function dev(){
 	container_start dev
@@ -154,78 +166,5 @@ function texlive(){
 		--hostname texlive \
 		--name texlive \
 		debian:texlive
-}
-
-## GUI env
-function rstudio(){
-	local container="rstudio"
-	container_remove $container
-	if [ $? -ne 0 ]
-	then
-		echo "remove $container error"
-	fi
-
-	echo "starting $container in background" >&2
-	sudo docker run -d \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /usr/share/fonts:/usr/share/fonts \
-		-e DISPLAY=unix$DISPLAY \
-		-v $HOME:/root \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		--name $container \
-		$index/rstudio
-}
-
-function wiznote(){
-	docker run -d \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /usr/share/fonts:/usr/share/fonts \
-		-e DISPLAY=unix$DISPLAY \
-		-v $HOME/.wiznote:/root/.wiznote \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		--name wiznote \
-		$index/wiznote:latest
-}
-
-function wpsoffice(){
-	docker run -d \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /usr/share/fonts:/usr/share/fonts \
-		-e DISPLAY=unix$DISPLAY \
-		-v $HOME:/root \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		--rm \
-		--name wps \
-		$index/wps:latest
-}
-
-function libreoffice(){
-	docker run -d \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /usr/share/fonts:/usr/share/fonts \
-		-e DISPLAY=unix$DISPLAY \
-		-v $HOME:/root \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		--name libreoffice \
-		ubuntu:libreoffice
-}
-
-function tor(){
-	docker run -d \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /dev/snd:/dev/snd \
-		-e DISPLAY=unix$DISPLAY \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		--name tor \
-		debian:tor-browser
 }
 
