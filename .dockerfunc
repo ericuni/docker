@@ -86,8 +86,8 @@ function dev(){
 		-v /usr/share/fonts:/usr/share/fonts \
 		-e DISPLAY=unix$DISPLAY \
 		-e LANG=C.UTF-8 \
-		-v $HOME:/root \
-		-w /root \
+		-v $HOME/git:/root/git \
+		-w /root/git \
 		-e GDK_SCALE \
 		-e GDK_DPI_SCALE \
 		--hostname dev \
