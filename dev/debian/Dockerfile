@@ -41,7 +41,7 @@ RUN apt-get install -y --no-install-recommends \
 		tcl8.6
 
 ## Google Protocol Buffer
-RUN apt-get install -y --no-install-recommands \
+RUN apt-get install -y --no-install-recommends \
 	protobuf-compiler \
 	python-protobuf \
 	libprotobuf-dev
