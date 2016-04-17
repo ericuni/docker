@@ -60,7 +60,7 @@ RUN apt-get install -y --no-install-recommends \
 	python-all \
 	python-all-dev \
 	python-all-dbg
-RUN wget http://www.apache.org/dyn/closer.cgi?path=/thrift/0.9.3/thrift-0.9.3.tar.gz . \
+RUN wget http://mirror.bit.edu.cn/apache/thrift/0.9.3/thrift-0.9.3.tar.gz
 	&& tar zxvf thrift-0.9.3.tar.gz \
 	&& cd thrift-0.9.3 \
 	&& ./configure \
