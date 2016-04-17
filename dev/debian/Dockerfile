@@ -3,26 +3,14 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
 
-
 ## tool
 RUN apt-get install -y --no-install-recommends \
 	vim \
 	tmux \
-	git
+	wget
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.tmux.conf /root/.tmux.conf
-
-## dev lib and tool
-RUN apt-get install -y --no-install-recommends \
-	automake \
-	bison \
-	flex \
-	libboost1.55-all-dev \
-	libevent-dev \
-	libssl-dev \
-	libtool \
-	pkg-config
 
 ## C famliy
 RUN apt-get install -y --no-install-recommends \
@@ -58,7 +46,25 @@ RUN apt-get install -y --no-install-recommends \
 
 ## Apache Thrift
 RUN apt-get install -y --no-install-recommends \
+	make \
+	automake \
+	bison \
+	flex \
+	libboost1.55-all-dev \
+	libevent-dev \
+	libssl-dev \
+	git \
+	libtool \
+	pkg-config
+RUN apt-get install -y --no-install-recommends \
 	python-all \
 	python-all-dev \
 	python-all-dbg
+RUN wget http://www.apache.org/dyn/closer.cgi?path=/thrift/0.9.3/thrift-0.9.3.tar.gz . \
+	&& tar zxvf thrift-0.9.3.tar.gz \
+	&& cd thrift-0.9.3 \
+	&& ./configure \
+	&& make \
+	&& make check \
+	&& make install
 
