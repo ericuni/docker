@@ -33,9 +33,8 @@ RUN apt-get install -y --no-install-recommends \
 	python-numpy python-scipy python-sympy \
 	python-matplotlib \
 	python-tk \
+	python-pip \
 	tcl8.6
-RUN apt-get install -y --no-install-recommends \
-	python-pip
 RUN pip install asstosrt
 
 ## Google Protocol Buffer
