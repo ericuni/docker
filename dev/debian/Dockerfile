@@ -49,5 +49,8 @@ ENV ROOT_PASS tenxcloud
 
 EXPOSE 80 22
 
+VOLUME  ["/app"]
+WORKDIR /app
+
 CMD ["/run.sh"]
 
