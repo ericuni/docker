@@ -17,16 +17,6 @@ RUN apt-get install -y --no-install-recommends \
 	gcc g++ clang \
 	gdb \
 	make
-RUN apt-get install -y --no-install-recommends \
-	libssl-dev \
-	libidn11-dev \
-	libldap2-dev \
-	libfreetype6-dev \
-	libjpeg-dev \
-	libtiff5-dev \
-	libxml2-dev \
-	libbz2-dev \
-	libfontconfig1-dev
 
 ## Python
 RUN apt-get install -y --no-install-recommends \
