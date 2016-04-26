@@ -51,6 +51,7 @@ EXPOSE 80 22
 
 VOLUME  ["/app"]
 WORKDIR /app
+ENV HOME /app
 
 CMD ["/run.sh"]
 
