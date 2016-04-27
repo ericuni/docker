@@ -7,6 +7,7 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
 	vim \
 	tmux \
+	git \
 	wget
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
@@ -25,13 +26,16 @@ RUN apt-get install -y --no-install-recommends \
 	python-tk \
 	python-pip \
 	tcl8.6
-RUN pip install asstosrt
 
 ## Google Protocol Buffer
 RUN apt-get install -y --no-install-recommends \
 	protobuf-compiler \
 	python-protobuf \
 	libprotobuf-dev
+
+## RabbitMQ
+RUN apt-get install -y --no-install-recommends rabbitmq-server \
+	&& pip install pika
 
 ## runtime env
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server pwgen
