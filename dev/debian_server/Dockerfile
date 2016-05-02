@@ -38,24 +38,11 @@ RUN apt-get install -y --no-install-recommends rabbitmq-server \
 	&& pip install pika
 
 ## runtime env
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server pwgen
-RUN mkdir -p /var/run/sshd \
-	&& sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
-	&& sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config \
-	&& sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
-
-ADD set_root_pw.sh /set_root_pw.sh
-ADD run.sh /run.sh
-RUN chmod +x /*.sh
-
-ENV AUTHORIZED_KEYS **None**
-ENV ROOT_PASS tenxcloud
-
-EXPOSE 80 22
-
+RUN apt-get install -y openssh-server \
+	&& mkdir /var/run/sshd \
+	&& echo "root:root" | chpasswd
+EXPOSE 22
 VOLUME  ["/app"]
 WORKDIR /app
-ENV HOME /app
-
-CMD ["/run.sh"]
+CMD ["/usr/sbin/sshd -D"]
 
