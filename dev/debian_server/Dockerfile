@@ -44,5 +44,5 @@ RUN apt-get install -y openssh-server \
 EXPOSE 22
 VOLUME  ["/app"]
 WORKDIR /app
-CMD ["/usr/sbin/sshd -D"]
+CMD ["exec /usr/sbin/sshd -D"]
 
