@@ -3,6 +3,16 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
 
+## runtime env
+RUN apt-get install -y --no-install-recommends openssh-server \
+	&& mkdir -p /var/run/sshd \
+	&& sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
+	&& sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config \
+	&& sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
+	&& echo "root:root" | chpasswd
+EXPOSE 22
+## docker run -d -p 9000:22 --name dev -v ~/git:/root/git debian:dev /usr/sbin/sshd -D
+
 ## tool
 RUN apt-get install -y --no-install-recommends \
 	vim \
@@ -37,14 +47,6 @@ RUN apt-get install -y --no-install-recommends \
 RUN apt-get install -y --no-install-recommends rabbitmq-server \
 	&& pip install pika
 
-## runtime env
-RUN apt-get install -y --no-install-recommends openssh-server \
-	&& mkdir -p /var/run/sshd \
-	&& sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
-	&& sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config \
-	&& sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
-	&& echo "root:root" | chpasswd
-EXPOSE 22
 VOLUME  ["/app"]
 WORKDIR /app
 
