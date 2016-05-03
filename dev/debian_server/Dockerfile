@@ -38,11 +38,15 @@ RUN apt-get install -y --no-install-recommends rabbitmq-server \
 	&& pip install pika
 
 ## runtime env
-RUN apt-get install -y openssh-server \
-	&& mkdir /var/run/sshd \
+RUN apt-get install -y --no-install-recommends openssh-server \
+	&& mkdir -p /var/run/sshd \
+	&& sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
+	&& sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config \
+	&& sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
 	&& echo "root:root" | chpasswd
 EXPOSE 22
 VOLUME  ["/app"]
 WORKDIR /app
-CMD ["exec /usr/sbin/sshd -D"]
+
+CMD ["/bin/bash"]
 
