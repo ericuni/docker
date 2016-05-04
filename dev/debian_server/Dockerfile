@@ -12,6 +12,7 @@ RUN apt-get install -y --no-install-recommends openssh-server \
 	&& sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
 	&& echo "root:root" | chpasswd
 EXPOSE 22
+VOLUME ["/app"]
 
 ## tool
 RUN apt-get install -y --no-install-recommends \
