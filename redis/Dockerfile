@@ -1,6 +1,7 @@
 FROM debian:jessie
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
+ADD ./sources.list /etc/apt/sources.list
 RUN apt-get update
 
 ## runtime env
@@ -17,8 +18,7 @@ VOLUME ["/app"]
 ## redis
 RUN apt-get install -y --no-install-recommends \
 	redis-server \
-	redis-tools \
-	python-redis
+	redis-tools
 
 CMD ["/bin/bash"]
 
