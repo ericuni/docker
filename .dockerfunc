@@ -155,3 +155,26 @@ function texlive(){
 		debian:texlive
 }
 
+function redis(){
+	container_start redis
+	if [ $? -eq 0 ]
+	then
+		return 0
+	fi
+
+	echo "creating..." >&2
+
+	docker run -it \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$DISPLAY \
+		-e GDK_SCALE \
+		-e GDK_DPI_SCALE \
+		-e LANG=C.UTF-8 \
+		-v $HOME/git:/root/git \
+		-w /root/git \
+		--hostname redis \
+		--name redis \
+		debian:redis
+}
+
