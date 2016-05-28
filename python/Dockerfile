@@ -25,7 +25,7 @@ RUN useradd --create-home --home-dir /home/ds --shell /bin/bash ds
 RUN chown -R ds /opt/ds
 RUN adduser ds sudo
 
-ADD run_ipython.sh /home/ds
+ADD run_ipython.sh /home/ds/run_ipython.sh
 RUN chmod +x /home/ds/run_ipython.sh
 RUN chown ds /home/ds/run_ipython.sh
 
@@ -43,3 +43,4 @@ VOLUME /home/ds/notebooks
 WORKDIR /home/ds/notebooks
 
 CMD ["/home/ds/run_ipython.sh"]
+
