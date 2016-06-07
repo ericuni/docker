@@ -58,82 +58,9 @@ function relies_on(){
 	done
 }
 
-## terminal env
-function dev(){
-	container_start dev
-	if [ $? -eq 0 ]
-	then
-		return 0
-	fi
-
-	echo "creating..." >&2
-	docker run -it \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /usr/share/fonts:/usr/share/fonts \
-		-e DISPLAY=unix$DISPLAY \
-		-e LANG=C.UTF-8 \
-		-v $HOME/git:/root/git \
-		-w /root/git \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		--hostname dev \
-		--name dev \
-		debian:dev
-
-	return 0
-}
-
-function debian(){
-	container_start debian
-	if [ $? -eq 0 ]
-	then
-		return 0
-	fi
-
-	echo "creating..." >&2
-
-	docker run -it \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /usr/share/fonts:/usr/share/fonts \
-		-e DISPLAY=unix$DISPLAY \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		-e LANG=C.UTF-8 \
-		-v $HOME:/root \
-		-w /root \
-		--hostname debian \
-		--name debian \
-		debian:jessie
-}
-
-function centos(){
-	container_start centos
-	if [ $? -eq 0 ]
-	then
-		return 0
-	fi
-
-	echo "creating..." >&2
-
-	docker run -it \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /usr/share/fonts:/usr/share/fonts \
-		-e DISPLAY=unix$DISPLAY \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		-e LANG=C.UTF-8 \
-		-v $HOME:/root \
-		-w /root \
-		--hostname centos \
-		--name centos \
-		centos:7.2
-}
-
-function texlive(){
-	container_start texlive
+function dm(){
+	machine=$1
+	container_start $machine
 	if [ $? -eq 0 ]
 	then
 		return 0
@@ -150,31 +77,8 @@ function texlive(){
 		-e LANG=C.UTF-8 \
 		-v $HOME/git:/root/git \
 		-w /root/git \
-		--hostname texlive \
-		--name texlive \
-		debian:texlive
-}
-
-function redis(){
-	container_start redis
-	if [ $? -eq 0 ]
-	then
-		return 0
-	fi
-
-	echo "creating..." >&2
-
-	docker run -it \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-e DISPLAY=unix$DISPLAY \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		-e LANG=C.UTF-8 \
-		-v $HOME/git:/root/git \
-		-w /root/git \
-		--hostname redis \
-		--name redis \
-		debian:redis
+		--hostname $machine \
+		--name $machine \
+		debian:$machine
 }
 
