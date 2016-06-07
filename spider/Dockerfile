@@ -13,6 +13,8 @@ ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.tmux.conf /root/
 RUN apt-get install -y --no-install-recommends \
 	python3 \
 	python3-pip
+RUN pip install \
+	beautifulsoup4
 
 CMD ["/bin/bash"]
 
