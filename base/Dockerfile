@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
-ADD ./sources.list /etc/apt/sources.list
+## ADD ./sources.list /etc/apt/sources.list
 RUN apt-get update
 
 ## runtime env
