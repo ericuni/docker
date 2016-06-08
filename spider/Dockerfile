@@ -1,6 +1,8 @@
 FROM debian:jessie
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
+RUN apt-get update
+
 ## tool
 RUN apt-get install -y --no-install-recommends \
 	vim \
