@@ -27,7 +27,7 @@ VOLUME ["/app"]
 RUN apt-get install -y --no-install-recommends \
 	python3 \
 	python3-pip
-RUN pip install \
+RUN pip3 install \
 	beautifulsoup4
 
 CMD ["/bin/bash"]
