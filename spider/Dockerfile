@@ -1,4 +1,4 @@
-FROM index.tenxcloud.com/ericuni/base:latest
+FROM index.tenxcloud.com/ericuni/base:debian
 
 ## Python
 RUN apt-get install -y --no-install-recommends \
