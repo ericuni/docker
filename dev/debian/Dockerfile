@@ -1,15 +1,5 @@
 FROM index.tenxcloud.com/ericuni/base:latest
 
-## tool
-RUN apt-get install -y --no-install-recommends \
-	vim \
-	tmux \
-	git \
-	wget
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.tmux.conf /root/.tmux.conf
-
 ## C famliy
 RUN apt-get install -y --no-install-recommends \
 	gcc g++ clang \
