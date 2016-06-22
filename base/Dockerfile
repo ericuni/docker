@@ -7,7 +7,7 @@ RUN apt-get update
 ## tool
 RUN apt-get install -y --no-install-recommends \
 	vim \
-	tmux \
+	tmux
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.tmux.conf /root/.tmux.conf
