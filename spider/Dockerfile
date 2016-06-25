@@ -15,7 +15,7 @@ RUN apt-get install -y --no-install-recommends \
 		fontconfig \
 		bzip2 \
 	&& tar jxvf phantomjs.tar.bz2 \
-	&& apt-get purge bzip2 \
+	&& apt-get purge -y bzip2 \
 	&& mv phantomjs-2.1.1-linux-x86_64 phantomjs \
 	&& rm -rf phantomjs.tar.bz2
 
