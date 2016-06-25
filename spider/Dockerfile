@@ -10,15 +10,14 @@ RUN pip3 install \
 	selenium
 
 ## phantomjs relies on fontconfig
+ADD https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 ./phantomjs.tar.bz2
 RUN apt-get install -y --no-install-recommends \
 		fontconfig \
 		bzip2 \
-		wget \
-	&& wget --no-check-certificate "https://drive.google.com/open?id=0B4-_w-u7UzjWak9OektJeFNmODA" -O - | tar jxv \
+	&& tar jxvf phantomjs.tar.bz2 \
 	&& mv phantomjs-2.1.1-linux-x86_64 phantomjs \
-	&& apt-get purge -y bzip2 wget \
+	&& apt-get purge -y bzip2 \
 	&& rm -rf phantomjs.tar.bz2
 
-## 	&& wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O - | tar jxv \
 CMD ["/bin/bash"]
 
