@@ -3,6 +3,7 @@ FROM index.tenxcloud.com/ericuni/base:latest
 ## C famliy
 RUN apt-get install -y --no-install-recommends \
 	gcc g++ clang \
+	libboost-all-dev \
 	gdb \
 	make
 
