@@ -4,6 +4,7 @@ FROM index.tenxcloud.com/ericuni/base:latest
 RUN apt-get install -y --no-install-recommends \
 	gcc g++ clang \
 	libboost-all-dev \
+	mpich \
 	gdb \
 	make
 
@@ -20,10 +21,6 @@ RUN apt-get install -y --no-install-recommends \
 	protobuf-compiler \
 	python-protobuf \
 	libprotobuf-dev
-
-## RabbitMQ
-RUN apt-get install -y --no-install-recommends rabbitmq-server \
-	&& pip install pika
 
 CMD ["/bin/bash"]
 
