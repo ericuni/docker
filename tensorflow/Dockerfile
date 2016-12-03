@@ -9,7 +9,7 @@ RUN apt-get install -y --no-install-recommends \
 ADD https://bootstrap.pypa.io/get-pip.py ./get-pip.py
 RUN python get-pip.py
 
-## tensorflow
+## tensorflow need pip version 8.1 or later
 RUN pip install \
 	tensorflow
 
