@@ -9,8 +9,8 @@ RUN apt-get update \
 		python-matplotlib python-tk \
 	&& rm -rf /var/lib/apt/lists/*
 
-VOLUME /notebooks
-WORKDIR /notebooks
+VOLUME /app
+WORKDIR /app
 
 EXPOSE 8888
 
