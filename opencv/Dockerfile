@@ -7,7 +7,7 @@ RUN apt-get install -y --no-install-recommends \
 
 ENV version 3.2.0
 ADD https://codeload.github.com/opencv/opencv/tar.gz/${version} ./opencv-${version}.tar.gz
-RUN tar zxf ./oepncv-${version}.tar.gz \
+RUN tar zxf ./opencv-${version}.tar.gz \
 	&& cd ./opencv-${version} \
 	&& mkdir ./build \
 	&& cd ./build \
