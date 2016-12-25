@@ -68,8 +68,13 @@ function dm(){
 
 	echo "creating..." >&2
 
-	docker run -it \
-		-p 443:8888 \
+	if [ "x$machine" == "xnotebook" ]
+	then
+		port="-p 443:8888"
+	else
+		port=""
+	fi
+	docker run -it $port \
 		-e "PASSWORD=123456" \
 		-v $HOME/git:/app \
 		-w /app \
