@@ -5,7 +5,7 @@ RUN apt-get install -y --no-install-recommends \
 	cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
 	python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
 
-ENV version 3.2.0
+ENV version 2.4.13
 ADD https://codeload.github.com/opencv/opencv/tar.gz/${version} ./opencv-${version}.tar.gz
 RUN tar zxf ./opencv-${version}.tar.gz \
 	&& cd ./opencv-${version} \
