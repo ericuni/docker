@@ -20,7 +20,7 @@ RUN cd /app \
 	&& mkdir ./build \
 	&& cd ./build \
 	&& cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ./.. \
-	&& make -j7 \
+	&& make -j2 \
 	&& make install \
 	&& cd /app \
 	&& rm -rf ./opencv-${version} ./opencv-${version}.tar.gz
