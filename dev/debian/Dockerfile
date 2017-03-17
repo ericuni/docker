@@ -17,8 +17,8 @@ RUN apt-get install -y --no-install-recommends \
 ## 	tcl8.6
 
 ## pip
-ADD https://bootstrap.pypa.io/get-pip.py ./get-pip.py
-RUN python2 get-pip.py
+ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
+RUN cd / && python2 ./get-pip.py
 
 ## Google Protocol Buffer
 RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev
@@ -38,6 +38,31 @@ RUN pip2 install tensorflow
 
 ## spider
 RUN pip2 install beautifulsoup4
+
+## RabbitMQ
+RUN apt-get install -y --no-install-recommends rabbitmq-server
+	&& pip2 install pika
+
+## R
+RUN apt-get update && apt-get install -y --no-install-recommends r-base r-base-dev r-cran-ggplot2
+
+## opencv
+RUN apt-get install -y --no-install-recommends \
+	build-essential \
+	cmake libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
+	python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+ENV opencv_version 2.4.13
+ADD https://codeload.github.com/opencv/opencv/tar.gz/${opencv_version} /opencv-${opencv_version}.tar.gz
+RUN cd / \
+	&& tar zxf ./opencv-${opencv_version}.tar.gz \
+	&& cd ./opencv-${opencv_version} \
+	&& mkdir ./build \
+	&& cd ./build \
+	&& cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ./.. \
+	&& make -j2 \
+	&& make install \
+	&& cd / \
+	&& rm -rf ./opencv-${opencv_version} ./opencv-${opencv_version}.tar.gz
 
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
