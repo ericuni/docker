@@ -40,7 +40,7 @@ RUN pip2 install tensorflow
 RUN pip2 install beautifulsoup4
 
 ## RabbitMQ
-RUN apt-get install -y --no-install-recommends rabbitmq-server
+RUN apt-get install -y --no-install-recommends rabbitmq-server \
 	&& pip2 install pika
 
 ## R
