@@ -1,8 +1,6 @@
 #!/bin/bash
 # Bash wrappers for docker run commands
 
-index="index.tenxcloud.com/ericuni"
-
 # Helper Functions
 function dcleanup(){
 	docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
