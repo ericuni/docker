@@ -34,7 +34,9 @@ RUN apt-get install -y --no-install-recommends mpich
 
 ## pip
 ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
-RUN cd / && python2 ./get-pip.py
+RUN cd / \
+	&& python2 ./get-pip.py \
+	&& pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n 1 pip install -U
 
 ## tensorflow need pip version 8.1 or later
 RUN pip2 install tensorflow
