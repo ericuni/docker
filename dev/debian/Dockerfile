@@ -12,26 +12,29 @@ RUN apt-get install -y --no-install-recommends gcc g++ clang gdb make
 ## Python
 RUN apt-get install -y --no-install-recommends \
 	python2.7 python-dev \
-	python-numpy python-scipy python-sympy python-pandas python-matplotlib
-## 	python-tk \
+	python-numpy python-scipy python-sympy python-pandas \
+	python-matplotlib python-tk
 ## 	tcl8.6
 
-## pip
-ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
-RUN cd / && python2 ./get-pip.py
-
-## Google Protocol Buffer
-RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev
+## R
+RUN apt-get update && apt-get install -y --no-install-recommends r-base r-base-dev r-cran-ggplot2
 
 ## boost
 RUN apt-get install -y --no-install-recommends libboost-all-dev
 
-## mpi
-RUN apt-get install -y --no-install-recommends mpich
+## Google Protocol Buffer
+RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev
 
 ## redis
 RUN apt-get install -y --no-install-recommends redis-server redis-tools
 EXPOSE 6379
+
+## mpi
+RUN apt-get install -y --no-install-recommends mpich
+
+## pip
+ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
+RUN cd / && python2 ./get-pip.py
 
 ## tensorflow need pip version 8.1 or later
 RUN pip2 install tensorflow
@@ -42,9 +45,6 @@ RUN pip2 install beautifulsoup4
 ## RabbitMQ
 RUN apt-get install -y --no-install-recommends rabbitmq-server \
 	&& pip2 install pika
-
-## R
-RUN apt-get update && apt-get install -y --no-install-recommends r-base r-base-dev r-cran-ggplot2
 
 ## opencv
 RUN apt-get install -y --no-install-recommends \
