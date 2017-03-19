@@ -3,8 +3,6 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends vim
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
 VOLUME ["/app"]
 
 RUN apt-get install -y --no-install-recommends \
@@ -28,6 +26,9 @@ RUN cd /app \
 
 ## http://stackoverflow.com/questions/29274638/opencv-libdc1394-error-failed-to-initialize-libdc1394
 ## RUN ln /dev/null /dev/raw1394
+
+ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
+ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
 
 CMD ["/bin/bash"]
 
