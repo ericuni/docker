@@ -12,9 +12,10 @@ RUN apt-get install -y --no-install-recommends \
 
 ENV version 2.4.13
 ## https://codeload.github.com/opencv/opencv_extra/tar.gz/2.4.13.2
-ADD https://codeload.github.com/opencv/opencv/tar.gz/${version} ./app/opencv-${version}.tar.gz
+## ADD https://codeload.github.com/opencv/opencv/tar.gz/${version} ./app/opencv-${version}.tar.gz
+ADD https://github.com/Itseez/opencv/archive/${version}.zip ./app/opencv-${version}.zip
 RUN cd /app \
-	&& tar zxf ./opencv-${version}.tar.gz \
+	&& unzip ./opencv-${version}.zip \
 	&& cd ./opencv-${version} \
 	&& mkdir ./build \
 	&& cd ./build \
