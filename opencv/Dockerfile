@@ -8,7 +8,8 @@ VOLUME ["/app"]
 RUN apt-get install -y --no-install-recommends \
 	build-essential \
 	cmake libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
-	python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+	python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev \
+	unzip
 
 ENV version 2.4.13
 ## https://codeload.github.com/opencv/opencv_extra/tar.gz/2.4.13.2
