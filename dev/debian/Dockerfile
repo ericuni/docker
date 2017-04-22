@@ -14,7 +14,6 @@ RUN apt-get install -y --no-install-recommends \
 	python2.7 python-dev \
 	python-numpy python-scipy python-sympy python-pandas \
 	python-matplotlib python-tk
-## 	tcl8.6
 
 ## R
 RUN apt-get update && apt-get install -y --no-install-recommends r-base r-base-dev r-cran-ggplot2
@@ -26,7 +25,8 @@ RUN apt-get install -y --no-install-recommends libboost-all-dev
 RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev
 
 ## redis
-RUN apt-get install -y --no-install-recommends redis-server redis-tools
+RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev \
+	tcl8.6 ## You need tcl 8.5 or newer in order to run the Redis test
 EXPOSE 6379
 
 ## mpi
