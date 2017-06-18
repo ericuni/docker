@@ -4,7 +4,7 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 RUN apt-get update
 
 ## basic tool
-RUN apt-get install -y --no-install-recommends vim tmux
+RUN apt-get install -y --no-install-recommends vim tmux net-tools locate
 
 ## C famliy
 RUN apt-get install -y --no-install-recommends gcc g++ clang gdb make
