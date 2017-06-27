@@ -64,22 +64,16 @@ function dm(){
 		return 0
 	fi
 
+	base=`docker images | grep "$machine" | awk '{print $1}'`
 	echo "creating..." >&2
-
-	if [ "x$machine" == "xnotebook" ]
-	then
-		port="-p 443:8888"
-	else
-		port=""
-	fi
-	docker run -it $port \
-		-e "PASSWORD=123456" \
-		-v $HOME/git:/app \
-		-w /app \
-		## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
+	docker run -it \
+		-v $HOME/git:/git \
+		-w /git \
 		--security-opt seccomp=unconfined \
 		--hostname $machine \
 		--name $machine \
-		debian:$machine
+		$base:$machine
+
+	## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
 }
 

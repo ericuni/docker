@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
