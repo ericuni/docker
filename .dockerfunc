@@ -67,8 +67,8 @@ function dm(){
 	base=`docker images | grep "$machine" | awk '{print $1}'`
 	echo "creating..." >&2
 	docker run -it \
-		-v $HOME/git:/git \
-		-w /git \
+		-v $HOME/git:/root/git \
+		-w /root/git \
 		--security-opt seccomp=unconfined \
 		--hostname $machine \
 		--name $machine \

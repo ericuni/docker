@@ -4,7 +4,7 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 RUN apt-get update
 
 ## basic tool
-RUN apt-get install -y --no-install-recommends vim tmux git \
+RUN apt-get install -y --no-install-recommends vim tmux git ssh \
 	net-tools locate wget
 
 ## C famliy
