@@ -15,6 +15,7 @@ RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb
 RUN apt-get install -y --no-install-recommends \
 	python2.7 python-dev \
 	python-numpy python-scipy python-sympy python-pandas python-matplotlib \
+	python-imaging \
 	python-tk python-setuptools
 
 ## R
