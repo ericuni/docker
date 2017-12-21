@@ -24,8 +24,11 @@ RUN apt-get install -y --no-install-recommends r-base r-base-dev r-cran-ggplot2
 ## boost
 RUN apt-get install -y --no-install-recommends libboost-all-dev
 
-## Google Protocol Buffer
-RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev
+## Google Protocol Buffer, gtest
+RUN apt-get install -y --no-install-recommends \
+	protobuf-compiler python-protobuf libprotobuf-dev \
+	libgtest-dev \
+	&& cd /usr/src/gtest && cmake . && make && cp libgtest.a libgtest_main.a /usr/local/lib/
 
 ## redis
 RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev \
