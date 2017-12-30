@@ -8,9 +8,7 @@ RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate
 
 # C famliy
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
-	libev-dev libevent-dev \
-	libjsoncpp-dev
-	libssl-dev
+	libev-dev libevent-dev libjsoncpp-dev libssl-dev
 
 # Python
 RUN apt-get install -y --no-install-recommends \
