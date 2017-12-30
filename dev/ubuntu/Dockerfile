@@ -4,7 +4,7 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 RUN apt-get update
 
 # basic tool
-RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate wget
+RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate realpath wget
 
 # C famliy
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
@@ -25,8 +25,8 @@ RUN cd /opt && python2 ./get-pip.py && cd - && pip2 list --outdated --format=fre
 RUN apt-get install -y --no-install-recommends libboost-all-dev
 
 # Google
-RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev
-RUN apt-get install -y --no-install-recommends libgtest-dev && cd /usr/src/gtest && cmake . && make && cp libgtest.a libgtest_main.a /usr/local/lib/
+RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev libprotoc-dev libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
+RUN apt-get install -y --no-install-recommends libgtest-dev && cd /usr/src/gtest && cmake . && make && cp libgtest.a libgtest_main.a /usr/lib/
 
 # redis(tcl 8.5 or newer needed by Redis test)
 ## RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev tcl8.6
