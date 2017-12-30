@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 # Copyright 2017 Théo Chamley
 # Permission is hereby granted, free of charge, to any person obtaining a copy of 
@@ -15,6 +16,7 @@
 # NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 
+## ex: ubuntu:dev
 IMAGES=$@
 
 echo "This will remove all your current containers and images except for:"
