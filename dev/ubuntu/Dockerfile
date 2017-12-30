@@ -6,10 +6,6 @@ RUN apt-get update
 # basic tool
 RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate wget
 
-# pip
-ADD https://bootstrap.pypa.io/get-pip.py /opt/get-pip.py
-RUN cd /opt && python2 ./get-pip.py && cd - && pip2 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n 1 pip2 install -U
-
 # C famliy
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
 	libev-dev libevent-dev \
@@ -22,6 +18,10 @@ RUN apt-get install -y --no-install-recommends \
 	python-numpy python-scipy python-sympy python-pandas python-matplotlib \
 	python-imaging \
 	python-tk python-setuptools
+
+# pip
+ADD https://bootstrap.pypa.io/get-pip.py /opt/get-pip.py
+RUN cd /opt && python2 ./get-pip.py && cd - && pip2 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n 1 pip2 install -U
 
 # boost
 RUN apt-get install -y --no-install-recommends libboost-all-dev
