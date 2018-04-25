@@ -4,7 +4,8 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 RUN apt-get update
 
 # basic tool
-RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate realpath wget
+## pstree in psmisc
+RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate realpath wget file psmisc
 
 # C famliy
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
