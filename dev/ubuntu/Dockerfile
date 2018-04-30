@@ -5,7 +5,8 @@ RUN apt-get update
 
 # basic tool
 ## pstree in psmisc
-RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate realpath wget file psmisc
+RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate realpath wget file psmisc \
+	&& ulimit -c unlimited
 
 # C famliy
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
