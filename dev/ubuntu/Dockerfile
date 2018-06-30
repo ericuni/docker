@@ -5,7 +5,7 @@ RUN apt-get update
 
 # basic tool
 ## pstree in psmisc
-RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate wget file psmisc \
+RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate wget file psmisc apt-utils \
 	&& ulimit -c unlimited
 
 # C famliy
@@ -13,6 +13,8 @@ RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb
 	libev-dev libevent-dev libjsoncpp-dev libssl-dev
 
 # Python
+## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
+## run `dpkg-reconfigure tzdata` to change default time zone(interactive mode)
 RUN DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y --no-install-recommends \
 	python2.7 python-dev \
