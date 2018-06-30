@@ -5,7 +5,7 @@ RUN apt-get update
 
 # basic tool
 ## pstree in psmisc
-RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate realpath wget file psmisc \
+RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate wget file psmisc \
 	&& ulimit -c unlimited
 
 # C famliy
