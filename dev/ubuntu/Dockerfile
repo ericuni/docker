@@ -13,17 +13,18 @@ RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb
 	libev-dev libevent-dev libjsoncpp-dev libssl-dev
 
 # Python
-RUN apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive \
+	apt-get install -y --no-install-recommends \
 	python2.7 python-dev \
 	python-numpy python-scipy python-sympy python-pandas python-matplotlib \
 	python-tk python-setuptools
 
 # pip
 ADD https://bootstrap.pypa.io/get-pip.py /opt/get-pip.py
-RUN cd /opt && python2 ./get-pip.py && cd - && pip2 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n 1 pip2 install -U
+RUN cd /opt && python2 ./get-pip.py
 
 # boost
-RUN apt-get install -y --no-install-recommends libboost-all-dev
+## RUN apt-get install -y --no-install-recommends libboost-all-dev
 
 # Google
 RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev libprotoc-dev libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
