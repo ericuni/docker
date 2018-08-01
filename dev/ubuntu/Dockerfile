@@ -70,6 +70,9 @@ RUN apt-get install -y --no-install-recommends libgtest-dev && cd /usr/src/gtest
 ## ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 ## RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 
+## java
+RUN apt-get install -y --no-install-recommends maven
+
 # END
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
