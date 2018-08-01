@@ -68,6 +68,7 @@ function dm(){
 	echo "creating..." >&2
 	docker run -it \
 		-v $HOME/git:/root/git \
+		-v $HOME/opt:/root/opt \
 		-w /root/git \
 		--security-opt seccomp=unconfined \
 		--hostname $machine \
