@@ -9,10 +9,11 @@ RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate
 	&& ulimit -c unlimited
 
 # C famliy
-## scons for blade
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
-	libev-dev libevent-dev libjsoncpp-dev libssl-dev \
-	scons
+	libev-dev libevent-dev libjsoncpp-dev libssl-dev
+
+## for tencent
+RUN apt-get install -y --no-install-recommends maven subversion scons ninja-build
 
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
@@ -71,9 +72,6 @@ RUN apt-get install -y --no-install-recommends libgtest-dev && cd /usr/src/gtest
 ## ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
 ## ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 ## RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
-
-## java
-RUN apt-get install -y --no-install-recommends maven
 
 # END
 ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc

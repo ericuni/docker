@@ -14,5 +14,10 @@ RUN mv /data/repo/* /etc/yum.repos.d \
 	&& yum-config-manager --disable system-container \
 
 ## install soft
-RUN yum install -y net-tools && yum clean all
+RUN yum install -y gcc gcc-c++ libstdc++-static \
+	git subversion \
+	protobuf-compiler protobuf-devel \
+	scons \
+	net-tools \
+	&& yum clean all
 
