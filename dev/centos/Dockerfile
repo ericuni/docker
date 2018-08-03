@@ -17,7 +17,7 @@ RUN mv /data/repo/* /etc/yum.repos.d \
 RUN yum install -y gcc gcc-c++ libstdc++-static \
 	git subversion \
 	protobuf-compiler protobuf-devel \
-	scons \
+	scons ninja-build \
 	net-tools \
 	&& yum clean all
 
