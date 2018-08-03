@@ -9,8 +9,10 @@ RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate
 	&& ulimit -c unlimited
 
 # C famliy
+## scons for blade
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
-	libev-dev libevent-dev libjsoncpp-dev libssl-dev
+	libev-dev libevent-dev libjsoncpp-dev libssl-dev \
+	scons
 
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
