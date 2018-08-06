@@ -13,15 +13,17 @@ RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb
 	libev-dev libevent-dev libjsoncpp-dev libssl-dev
 
 # Google
-RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev libprotoc-dev libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev \
-	&& git clone https://github.com/google/googletest.git \
-	&& cd googletest && mkdir build && cd build \
+ADD https://codeload.github.com/google/googletest/zip/master /opt/gtest.zip
+ADD https://codeload.github.com/google/benchmark/zip/master /opt/benchmark.zip
+RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev libprotoc-dev \
+		libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev \
+		zip unzip \
+	&& cd /opt && unzip gtest.zip && cd googletest-master && mkdir build && cd build \
 	&& cmake .. && make && make install \
-	&& cd ../../ && rm -rf googletest \
-	&& git clone https://github.com/google/benchmark.git \
-	&& cd benchmark && mkdir build && cd build \
-	&& cmake .. && make && make install \
-	&& cd ../../ && rm -rf benchmark
+	&& cd /opt && unzip benchmark.zip && cd benchmark-master && mkdir build && cd build \
+	&& cmake .. -DCMAKE_BUILD_TYPE=RELEASE && make && make install \
+	&& cd /opt && rm -rf * \
+	&& apt-get purge -y zip unzip
 ## RUN apt-get install -y --no-install-recommends libgtest-dev && cd /usr/src/gtest && cmake . && make && cp libgtest.a libgtest_main.a /usr/lib/
 
 ## for Tencent
