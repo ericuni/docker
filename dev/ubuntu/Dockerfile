@@ -12,28 +12,36 @@ RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
 	libev-dev libevent-dev libjsoncpp-dev libssl-dev
 
-## for tencent
-RUN apt-get install -y --no-install-recommends maven subversion scons ninja-build
+# Google
+RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev libprotoc-dev libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev \
+	&& git clone https://github.com/google/googletest.git \
+	&& cd googletest && mkdir build && cd build \
+	&& cmake .. && make && make install \
+	&& cd ../../ && rm -rf googletest \
+	&& git clone https://github.com/google/benchmark.git \
+	&& cd benchmark && mkdir build && cd build \
+	&& cmake .. && make && make install \
+	&& cd ../../ && rm -rf benchmark
+## RUN apt-get install -y --no-install-recommends libgtest-dev && cd /usr/src/gtest && cmake . && make && cp libgtest.a libgtest_main.a /usr/lib/
+
+## for Tencent
+RUN apt-get install -y --no-install-recommends subversion scons ninja-build maven
 
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
 ## run `dpkg-reconfigure tzdata` to change default time zone(interactive mode)
-RUN DEBIAN_FRONTEND=noninteractive \
-	apt-get install -y --no-install-recommends \
-	python2.7 python-dev \
-	python-numpy python-scipy python-sympy python-pandas python-matplotlib \
-	python-tk python-setuptools
+## RUN DEBIAN_FRONTEND=noninteractive \
+## 	apt-get install -y --no-install-recommends \
+## 	python2.7 python-dev \
+## 	python-numpy python-scipy python-sympy python-pandas python-matplotlib \
+## 	python-tk python-setuptools
 
 # pip
-ADD https://bootstrap.pypa.io/get-pip.py /opt/get-pip.py
-RUN cd /opt && python2 ./get-pip.py
+## ADD https://bootstrap.pypa.io/get-pip.py /opt/get-pip.py
+## RUN cd /opt && python2 ./get-pip.py
 
 # boost
 ## RUN apt-get install -y --no-install-recommends libboost-all-dev
-
-# Google
-RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev libprotoc-dev libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
-RUN apt-get install -y --no-install-recommends libgtest-dev && cd /usr/src/gtest && cmake . && make && cp libgtest.a libgtest_main.a /usr/lib/
 
 # redis(tcl 8.5 or newer needed by Redis test)
 ## RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev tcl8.6
