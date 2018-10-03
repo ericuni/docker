@@ -10,13 +10,21 @@ RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate
 
 # C famliy
 RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
-	libev-dev libevent-dev libjsoncpp-dev libssl-dev
+	libev-dev libevent-dev libjsoncpp-dev libssl-dev \
+	libcurl4-openssl-dev
 
 # Google
 RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev libprotoc-dev \
 	libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
 
-## blade
+# brpc
+RUN git clone https://github.com/brpc/brpc.git brpc \
+	&& cd /brpc && sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
+	&& cp -rf output/include/* /usr/local/include \
+	&& cp -rf output/lib/* /usr/local/lib \
+	&& rm -rf brpc
+
+# blade
 RUN apt-get install -y --no-install-recommends scons ninja-build
 
 # Python
