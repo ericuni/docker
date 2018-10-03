@@ -18,11 +18,14 @@ RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev
 	libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
 
 # brpc
-RUN git clone https://github.com/brpc/brpc.git brpc \
-	&& cd /brpc && sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
+ADD https://codeload.github.com/brpc/brpc/zip/master brpc.zip
+RUN apt-get install -y unzip \
+	&& unzip brpc.zip \
+	&& cd brpc-master && sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
 	&& cp -rf output/include/* /usr/local/include \
 	&& cp -rf output/lib/* /usr/local/lib \
-	&& rm -rf brpc
+	&& rm -rf brpc-master brpc.zip \
+	&& apt-get purge -y unzip
 
 # blade
 RUN apt-get install -y --no-install-recommends scons ninja-build
