@@ -24,6 +24,7 @@ RUN apt-get install -y unzip \
 	&& cd brpc-master && sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
 	&& cp -rf output/include/* /usr/local/include \
 	&& cp -rf output/lib/* /usr/local/lib \
+	&& ldconfig \
 	&& rm -rf brpc-master brpc.zip \
 	&& apt-get purge -y unzip
 
