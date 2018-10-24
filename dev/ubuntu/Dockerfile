@@ -29,7 +29,11 @@ RUN apt-get install -y unzip \
 	&& apt-get purge -y unzip
 
 # blade
-RUN apt-get install -y --no-install-recommends scons ninja-build
+ADD https://codeload.github.com/chen3feng/typhoon-blade/zip/master /opt/typhoon-blade.zip
+RUN apt-get install -y --no-install-recommends scons ninja-build unzip \
+	&& cd /opt && unzip typhoon-blade.zip && cd typhoon-blade-master && sh ./install.sh \
+	&& rm typhoon-blade.zip && apt-get purge -y unzip
+
 
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
@@ -84,13 +88,4 @@ RUN apt-get install -y --no-install-recommends scons ninja-build
 ## ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
 ## ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 ## RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
-
-# END
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.tmux.conf /root/.tmux.conf
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.gitconfig /root/.gitconfig
-
-WORKDIR /root/git
-CMD ["/bin/bash"]
 
