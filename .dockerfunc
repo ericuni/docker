@@ -57,25 +57,13 @@ function relies_on(){
 }
 
 function dm(){
-	machine=$1
-	container_start $machine
-	if [ $? -eq 0 ]
+	if [ "x$1" == "xinit" ]
 	then
+		## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
+		docker run -dt -v $HOME/git:/root/git -v $HOME:/root/home -w /root/git --security-opt seccomp=unconfined --hostname dev --name dev ubuntu:dev
 		return 0
 	fi
 
-	base=`docker images | grep "$machine" | awk '{print $1}'`
-	echo "creating..." >&2
-	docker run -it \
-		-v $HOME/git:/root/git \
-		-v $HOME:/root/home \
-		-w /root/git \
-		--security-opt seccomp=unconfined \
-		--hostname $machine \
-		--name $machine \
-		$base:$machine \
-		/bin/bash
-
-	## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
+	docker exec -it $1 /bin/bash
 }
 
