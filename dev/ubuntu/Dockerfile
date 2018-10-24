@@ -31,7 +31,7 @@ RUN apt-get install -y unzip \
 # blade
 ADD https://codeload.github.com/chen3feng/typhoon-blade/zip/master /opt/typhoon-blade.zip
 RUN apt-get install -y --no-install-recommends scons ninja-build unzip \
-	&& cd /opt && unzip typhoon-blade.zip && cd typhoon-blade-master && sh ./install.sh \
+	&& cd /opt && unzip typhoon-blade.zip && cd typhoon-blade-master && sh ./install \
 	&& rm typhoon-blade.zip && apt-get purge -y unzip
 
 
