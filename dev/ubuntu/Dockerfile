@@ -27,7 +27,7 @@ RUN apt-get install -y --no-install-recommends scons ninja-build \
 	&& mkdir /opt/typhoon-blade && cd /opt/typhoon-blade && curl -L https://api.github.com/repos/chen3feng/typhoon-blade/tarball | tar xz --strip-components 1
 
 # brpc
-RUN mkdir /opt/brpc && cd /opt/brpc && curl -L https://api.github.com/repos/brpc/brpc/tarball | tar xz --strip-components 1
+RUN mkdir /opt/brpc && cd /opt/brpc && curl -L https://api.github.com/repos/brpc/brpc/tarball | tar xz --strip-components 1 \
 	&& sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
 	&& cp -rf output/include/* /usr/local/include && cp -rf output/lib/* /usr/local/lib && ldconfig \
 	&& cd /opt && rm -rf brpc
