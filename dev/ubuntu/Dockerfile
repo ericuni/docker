@@ -5,17 +5,26 @@ RUN apt-get update
 
 # basic tool
 ## pstree in psmisc
-RUN apt-get install -y --no-install-recommends vim tmux git ssh net-tools locate wget file psmisc apt-utils tree \
+RUN apt-get install -y --no-install-recommends vim git ack \
+	ssh net-tools wget \
+	locate file tree psmisc \
+	apt-utils \
+	locales-all \
+	tmux \
 	&& ulimit -c unlimited
 
 # C famliy
-RUN apt-get install -y --no-install-recommends build-essential gcc g++ clang gdb make cmake \
+RUN apt-get install -y --no-install-recommends build-essential gcc g++ gdb make cmake \
 	libev-dev libevent-dev libjsoncpp-dev libssl-dev \
 	libcurl4-openssl-dev
 
 # Google
 RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev libprotoc-dev \
 	libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
+
+# blade
+ADD https://codeload.github.com/chen3feng/typhoon-blade/zip/master /opt/typhoon-blade.zip
+RUN apt-get install -y --no-install-recommends scons ninja-build
 
 # brpc
 ADD https://codeload.github.com/brpc/brpc/zip/master brpc.zip
@@ -27,13 +36,6 @@ RUN apt-get install -y unzip \
 	&& ldconfig \
 	&& rm -rf brpc-master brpc.zip \
 	&& apt-get purge -y unzip
-
-# blade
-ADD https://codeload.github.com/chen3feng/typhoon-blade/zip/master /opt/typhoon-blade.zip
-RUN apt-get install -y --no-install-recommends scons ninja-build unzip \
-	&& cd /opt && unzip typhoon-blade.zip && cd typhoon-blade-master && sh ./install \
-	&& cd /opt && rm typhoon-blade.zip && apt-get purge -y unzip
-
 
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
