@@ -6,7 +6,7 @@ RUN apt-get update
 # basic tool
 ## pstree in psmisc
 RUN apt-get install -y --no-install-recommends vim git ack \
-	ssh net-tools wget \
+	ssh net-tools ca-certificates curl wget \
 	locate file tree psmisc \
 	apt-utils \
 	locales-all \
@@ -23,19 +23,14 @@ RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev
 	libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
 
 # blade
-ADD https://codeload.github.com/chen3feng/typhoon-blade/zip/master /opt/typhoon-blade.zip
-RUN apt-get install -y --no-install-recommends scons ninja-build
+RUN apt-get install -y --no-install-recommends scons ninja-build \
+	&& mkdir /opt/typhoon-blade && cd /opt/typhoon-blade && curl -L https://api.github.com/repos/chen3feng/typhoon-blade/tarball | tar xz --strip-components 1
 
 # brpc
-ADD https://codeload.github.com/brpc/brpc/zip/master brpc.zip
-RUN apt-get install -y unzip \
-	&& unzip brpc.zip \
-	&& cd brpc-master && sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
-	&& cp -rf output/include/* /usr/local/include \
-	&& cp -rf output/lib/* /usr/local/lib \
-	&& ldconfig \
-	&& rm -rf brpc-master brpc.zip \
-	&& apt-get purge -y unzip
+RUN mkdir /opt/brpc && cd /opt/brpc && curl -L https://api.github.com/repos/brpc/brpc/tarball | tar xz --strip-components 1
+	&& sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
+	&& cp -rf output/include/* /usr/local/include && cp -rf output/lib/* /usr/local/lib && ldconfig \
+	&& cd /opt && rm -rf brpc
 
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
