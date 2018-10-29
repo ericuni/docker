@@ -32,6 +32,9 @@ RUN mkdir /opt/brpc && cd /opt/brpc && curl -L https://api.github.com/repos/brpc
 	&& cp -rf output/include/* /usr/local/include && cp -rf output/lib/* /usr/local/lib && ldconfig \
 	&& cd /opt && rm -rf brpc
 
+# Java
+RUN apt-get install -y --no-install-recommends maven
+
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
 ## run `dpkg-reconfigure tzdata` to change default time zone(interactive mode)
