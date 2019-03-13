@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
-RUN apt-get upgrade
+RUN apt-get upgrade -y
 
 # basic tool
 ## pstree in psmisc
