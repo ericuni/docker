@@ -2,6 +2,7 @@ FROM ubuntu:18.04
 MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
+RUN apt-get upgrade
 
 # basic tool
 ## pstree in psmisc
@@ -14,7 +15,7 @@ RUN apt-get install -y --no-install-recommends vim git ack \
 	&& ulimit -c unlimited
 
 # C famliy
-RUN apt-get install -y --no-install-recommends build-essential gcc g++ gdb make cmake \
+RUN apt-get install -y --no-install-recommends build-essential gcc-8 g++-8 gdb make cmake \
 	libev-dev libevent-dev libjsoncpp-dev libssl-dev \
 	libcurl4-openssl-dev
 
