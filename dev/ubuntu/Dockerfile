@@ -7,33 +7,33 @@ RUN apt-get upgrade -y
 # basic tool
 ## pstree in psmisc
 RUN apt-get install -y --no-install-recommends vim git ack \
-	ssh net-tools ca-certificates curl wget \
-	locate file tree psmisc \
-	apt-utils \
-	locales-all \
-	tmux \
-	&& ulimit -c unlimited
+  ssh net-tools ca-certificates curl wget \
+  locate file tree psmisc \
+  apt-utils \
+  locales-all \
+  tmux \
+  && ulimit -c unlimited
 
 # C famliy
 RUN apt-get install -y --no-install-recommends build-essential gcc-8 g++-8 gdb make cmake \
-	libev-dev libevent-dev libjsoncpp-dev libssl-dev \
-	libcurl4-openssl-dev \
+  libev-dev libevent-dev libjsoncpp-dev libssl-dev \
+  libcurl4-openssl-dev \
   && ln -sf /usr/bin/gcc-8 /usr/bin/gcc \
   && ln -sf /usr/bin/g++-8 /usr/bin/g++
 
 # Google
 RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev libprotoc-dev \
-	libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
+  libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
 
 # blade
 RUN apt-get install -y --no-install-recommends scons ninja-build \
-	&& mkdir /opt/typhoon-blade && cd /opt/typhoon-blade && curl -L https://api.github.com/repos/chen3feng/typhoon-blade/tarball | tar xz --strip-components 1
+  && mkdir /opt/typhoon-blade && cd /opt/typhoon-blade && curl -L https://api.github.com/repos/chen3feng/typhoon-blade/tarball | tar xz --strip-components 1
 
 # brpc
 RUN mkdir /opt/brpc && cd /opt/brpc && curl -L https://api.github.com/repos/brpc/brpc/tarball | tar xz --strip-components 1 \
-	&& sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
-	&& cp -rf output/include/* /usr/local/include && cp -rf output/lib/* /usr/local/lib && ldconfig \
-	&& cd /opt && rm -rf brpc
+  && sh config_brpc.sh --headers=/usr/include --libs=/usr/lib --with-glog && make -j 8 \
+  && cp -rf output/include/* /usr/local/include && cp -rf output/lib/* /usr/local/lib && ldconfig \
+  && cd /opt && rm -rf brpc
 
 # Java
 RUN apt-get install -y --no-install-recommends maven
@@ -42,10 +42,10 @@ RUN apt-get install -y --no-install-recommends maven
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
 ## run `dpkg-reconfigure tzdata` to change default time zone(interactive mode)
 ## RUN DEBIAN_FRONTEND=noninteractive \
-## 	apt-get install -y --no-install-recommends \
-## 	python2.7 python-dev \
-## 	python-numpy python-scipy python-sympy python-pandas python-matplotlib \
-## 	python-tk python-setuptools
+##   apt-get install -y --no-install-recommends \
+##   python2.7 python-dev \
+##   python-numpy python-scipy python-sympy python-pandas python-matplotlib \
+##   python-tk python-setuptools
 
 # pip
 ## ADD https://bootstrap.pypa.io/get-pip.py /opt/get-pip.py
