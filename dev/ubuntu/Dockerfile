@@ -23,11 +23,14 @@ RUN apt-get install -y --no-install-recommends build-essential gcc-8 g++-8 gdb m
 
 # Google
 RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev libprotoc-dev \
-  libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev
+  libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev \
+  && mkdir /opt/pkg && cd /opt/pkg \
+  && curl -L https://api.github.com/repos/google/googletest/tarball | tar xz --strip-components 1 \
+  && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
 # blade
 RUN apt-get install -y --no-install-recommends scons ninja-build \
-  && mkdir /opt/typhoon-blade && cd /opt/typhoon-blade && curl -L https://api.github.com/repos/chen3feng/typhoon-blade/tarball | tar xz --strip-components 1
+  && mkdir /opt/blade && cd /opt/blade && curl -L https://api.github.com/repos/chen3feng/blade-build/tarball | tar xz --strip-components 1
 
 # brpc
 RUN mkdir /opt/brpc && cd /opt/brpc && curl -L https://api.github.com/repos/brpc/brpc/tarball | tar xz --strip-components 1 \
@@ -36,7 +39,7 @@ RUN mkdir /opt/brpc && cd /opt/brpc && curl -L https://api.github.com/repos/brpc
   && cd /opt && rm -rf brpc
 
 # Java
-RUN apt-get install -y --no-install-recommends maven
+## RUN apt-get install -y --no-install-recommends maven
 
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
