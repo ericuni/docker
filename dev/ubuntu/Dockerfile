@@ -28,7 +28,7 @@ RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev
   && curl -L https://codeload.github.com/google/googletest/tar.gz/release-1.8.1 | tar xz --strip-components 1 \
   && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg \
   && mkdir /opt/pkg && cd /opt/pkg \
-  && curl -L https://codeload.github.com/google/benchmark/tar.gz/release-1.4.1 | tar xz --strip-components 1 \
+  && curl -L https://codeload.github.com/google/benchmark/tar.gz/v1.4.1 | tar xz --strip-components 1 \
   && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
 # blade
