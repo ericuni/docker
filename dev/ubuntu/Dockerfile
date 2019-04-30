@@ -22,14 +22,17 @@ RUN apt-get install -y --no-install-recommends build-essential gcc-8 g++-8 gdb m
   && ln -sf /usr/bin/g++-8 /usr/bin/g++
 
 # Google
-RUN apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev libprotoc-dev \
+RUN apt-get install -y --no-install-recommends \
   libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev \
   && mkdir /opt/pkg && cd /opt/pkg \
   && curl -L https://codeload.github.com/google/googletest/tar.gz/release-1.8.1 | tar xz --strip-components 1 \
   && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg \
   && mkdir /opt/pkg && cd /opt/pkg \
   && curl -L https://codeload.github.com/google/benchmark/tar.gz/v1.4.1 | tar xz --strip-components 1 \
-  && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg
+  && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg \
+  && mkdir /opt/pkg && cd /opt/pkg \
+  && curl -L https://codeload.github.com/protocolbuffers/protobuf/tar.gz/v3.7.1 | tar xz --strip-components 1 \
+  && cd cmake && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
 # blade
 RUN apt-get install -y --no-install-recommends scons ninja-build \
