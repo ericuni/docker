@@ -32,7 +32,7 @@ RUN apt-get install -y --no-install-recommends \
   && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg \
   && mkdir /opt/pkg && cd /opt/pkg \
   && curl -L https://codeload.github.com/protocolbuffers/protobuf/tar.gz/v3.7.1 | tar xz --strip-components 1 \
-  && cd cmake && mkdir bld && cd bld && cmake .. && make -j 8 && make install && cd /opt && rm -rf pkg
+  && cd cmake && mkdir bld && cd bld && cmake .. -Dprotobuf_BUILD_TESTS=OFF && make -j 8 && make install && cd /opt && rm -rf pkg
 
 # blade
 RUN apt-get install -y --no-install-recommends scons ninja-build \
