@@ -17,7 +17,7 @@ RUN apt-get install -y --no-install-recommends vim git ack \
 # C famliy
 RUN apt-get install -y --no-install-recommends build-essential gcc-8 g++-8 gdb make cmake \
   libev-dev libevent-dev libjsoncpp-dev libssl-dev \
-  libcurl4-openssl-dev \
+  libcurl4-openssl-dev zlib1g-dev \
   && ln -sf /usr/bin/gcc-8 /usr/bin/gcc \
   && ln -sf /usr/bin/g++-8 /usr/bin/g++
 
