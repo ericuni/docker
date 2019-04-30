@@ -39,8 +39,8 @@ RUN apt-get install -y --no-install-recommends scons ninja-build \
   && mkdir /opt/blade && cd /opt/blade && curl -L https://api.github.com/repos/chen3feng/blade-build/tarball | tar xz --strip-components 1
 
 # brpc
-RUN mkdir /opt/pkg && cd /opt/pkg && curl -L https://api.github.com/repos/brpc/brpc/tarball | tar xz --strip-components 1 \
-  && mkdir bld && cd bld && cmake -DWITH_GLOG=ON .. && make -j 8 && make install && cd /opt && rm -rf pkg
+## RUN mkdir /opt/pkg && cd /opt/pkg && curl -L https://api.github.com/repos/brpc/brpc/tarball | tar xz --strip-components 1 \
+##   && mkdir bld && cd bld && cmake -DWITH_GLOG=ON .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
 # Java
 RUN apt-get install -y --no-install-recommends maven
