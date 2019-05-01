@@ -5,13 +5,13 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # basic tool
-## pstree in psmisc
 RUN apt-get install -y --no-install-recommends vim git ack \
   ssh net-tools ca-certificates curl wget \
-  locate file tree psmisc \
+  locate file tree \
+  ## pstree
+  psmisc \
   apt-utils \
   locales-all \
-  tmux \
   && ulimit -c unlimited
 
 # C famliy
@@ -31,16 +31,17 @@ RUN apt-get install -y --no-install-recommends \
   && curl -L https://codeload.github.com/google/benchmark/tar.gz/v1.4.1 | tar xz --strip-components 1 \
   && mkdir bld && cd bld && cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg \
   && mkdir /opt/pkg && cd /opt/pkg \
-  && curl -L https://codeload.github.com/protocolbuffers/protobuf/tar.gz/v3.7.1 | tar xz --strip-components 1 \
-  && cd cmake && mkdir bld && cd bld && cmake -DCMAKE_INSTALL_PREFIX=/usr -Dprotobuf_BUILD_TESTS=OFF .. && make -j 8 && make install && cd /opt && rm -rf pkg
+  && curl -L https://codeload.github.com/protocolbuffers/protobuf/tar.gz/v3.6.1 | tar xz --strip-components 1 \
+  && cd cmake && mkdir bld && cd bld && cmake -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -fPIC" -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
 # blade
 RUN apt-get install -y --no-install-recommends scons ninja-build \
   && mkdir /opt/blade && cd /opt/blade && curl -L https://api.github.com/repos/chen3feng/blade-build/tarball | tar xz --strip-components 1
 
 # brpc
-## RUN mkdir /opt/pkg && cd /opt/pkg && curl -L https://api.github.com/repos/brpc/brpc/tarball | tar xz --strip-components 1 \
-##   && mkdir bld && cd bld && cmake -DWITH_GLOG=ON .. && make -j 8 && make install && cd /opt && rm -rf pkg
+RUN mkdir /opt/pkg && cd /opt/pkg \
+  && curl -L https://codeload.github.com/apache/incubator-brpc/tar.gz/0.9.5 | tar xz --strip-components 1 \
+  && mkdir bld && cd bld && cmake -DWITH_GLOG=ON -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
 # Java
 RUN apt-get install -y --no-install-recommends maven
