@@ -60,7 +60,7 @@ function dm(){
 	if [ "x$1" == "xinit" ]
 	then
 		## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
-		docker run -dt -v $HOME:/root -w /root --security-opt seccomp=unconfined --hostname dev2 --name dev2 ericuni/ubuntu:latest
+		docker run -dt -v $HOME:/root -w /root --privileged --security-opt seccomp=unconfined --hostname dev2 --name dev2 ericuni/ubuntu:latest
 	else
 		docker exec -it $1 /bin/bash
 	fi
