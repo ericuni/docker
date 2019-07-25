@@ -45,6 +45,12 @@ RUN mkdir /opt/pkg && cd /opt/pkg \
 # Java
 RUN apt-get install -y --no-install-recommends maven
 
+# mysql
+RUN apt-get install -y --no-install-recommends mariadb-server libmysqlclient-dev \
+  && mkdir /opt/pkg && cd /opt/pkg \
+  && curl -L https://tangentsoft.com/mysqlpp/releases/mysql++-3.2.5.tar.gz | tar xz --strip-components 1 \
+  && ./configure --prefix=/usr && make -j 8 && make install && cd /opt && rm -rf pkg
+
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
 ## run `dpkg-reconfigure tzdata` to change default time zone(interactive mode)
