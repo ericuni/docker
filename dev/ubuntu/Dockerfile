@@ -33,6 +33,9 @@ RUN apt-get install -y --no-install-recommends \
   && curl -L https://codeload.github.com/protocolbuffers/protobuf/tar.gz/v3.6.1 | tar xz --strip-components 1 \
   && cd cmake && mkdir bld && cd bld && cmake -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -fPIC" -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
+# facebook
+RUN apt-get install -y --no-install-recommends librocksdb-dev
+
 # blade
 RUN apt-get install -y --no-install-recommends scons ninja-build \
   && mkdir /opt/blade && cd /opt/blade && curl -L https://api.github.com/repos/chen3feng/blade-build/tarball | tar xz --strip-components 1
