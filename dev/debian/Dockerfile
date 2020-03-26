@@ -9,52 +9,19 @@ RUN apt-get install -y --no-install-recommends vim tmux net-tools locate
 ## C famliy
 RUN apt-get install -y --no-install-recommends gcc g++ clang gdb make
 
-## Python
+# Google
 RUN apt-get install -y --no-install-recommends \
-	python2.7 python-dev \
-	python-numpy python-scipy python-sympy python-pandas \
-	python-matplotlib python-tk
-
-## R
-RUN apt-get update && apt-get install -y --no-install-recommends r-base r-base-dev r-cran-ggplot2
-
-## boost
-RUN apt-get install -y --no-install-recommends libboost-all-dev
+  libgoogle-perftools-dev libgoogle-glog-dev libgflags-dev libleveldb-dev \
+  && mkdir /opt/pkg && cd /opt/pkg \
+  && curl -L https://codeload.github.com/google/googletest/tar.gz/release-1.8.1 | tar xz --strip-components 1 \
+  && mkdir bld && cd bld && cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg \
+  && mkdir /opt/pkg && cd /opt/pkg \
+  && curl -L https://codeload.github.com/google/benchmark/tar.gz/v1.4.1 | tar xz --strip-components 1 \
+  && mkdir bld && cd bld && cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg \
+  && mkdir /opt/pkg && cd /opt/pkg \
+  && curl -L https://codeload.github.com/protocolbuffers/protobuf/tar.gz/v3.6.1 | tar xz --strip-components 1 \
+  && cd cmake && mkdir bld && cd bld && cmake -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -fPIC" -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
 ## Google Protocol Buffer
-RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev
-
-## redis
-RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev \
-	tcl8.6 ## You need tcl 8.5 or newer in order to run the Redis test
-EXPOSE 6379
-
-## mpi
-RUN apt-get install -y --no-install-recommends mpich
-
-## pip
-ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
-RUN cd / \
-	&& python2 ./get-pip.py \
-	&& pip2 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n 1 pip2 install -U
-
-## tensorflow need pip version 8.1 or later
-RUN pip2 install tensorflow
-
-## sklearn
-RUN pip2 install scikit-learn
-
-## spider
-RUN pip2 install beautifulsoup4
-
-## RabbitMQ
-RUN apt-get install -y --no-install-recommends rabbitmq-server \
-	&& pip2 install pika
-
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.bashrc /root/.bashrc
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.vimrc /root/.vimrc
-ADD https://raw.githubusercontent.com/ericuni/note/master/conf/.tmux.conf /root/.tmux.conf
-
-VOLUME ["/app"]
-CMD ["/bin/bash"]
+## RUN apt-get install -y --no-install-recommends protobuf-compiler python-protobuf libprotobuf-dev
 
