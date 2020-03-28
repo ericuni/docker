@@ -3,8 +3,15 @@ MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
 
-## basic tool
-RUN apt-get install -y --no-install-recommends vim tmux net-tools locate
+# basic tool
+RUN apt-get install -y --no-install-recommends vim git ack \
+  ssh net-tools ca-certificates curl wget \
+  locate file tree \
+  ## pstree
+  psmisc \
+  apt-utils \
+  locales-all \
+  && ulimit -c unlimited
 
 ## C famliy
 RUN apt-get install -y --no-install-recommends gcc g++ clang gdb make
