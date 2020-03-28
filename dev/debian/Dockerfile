@@ -1,5 +1,4 @@
 FROM debian:stretch
-MAINTAINER Eric Wang <wangchaogo1990@gmail.com>
 
 RUN apt-get update
 
@@ -13,8 +12,12 @@ RUN apt-get install -y --no-install-recommends vim git ack \
   locales-all \
   && ulimit -c unlimited
 
-## C famliy
-RUN apt-get install -y --no-install-recommends gcc g++ clang gdb make
+# C famliy
+RUN apt-get install -y --no-install-recommends build-essential gcc-8 g++-8 gdb make cmake \
+  libev-dev libevent-dev libjsoncpp-dev libssl-dev \
+  libcurl4-openssl-dev zlib1g-dev \
+  && ln -sf /usr/bin/gcc-8 /usr/bin/gcc \
+  && ln -sf /usr/bin/g++-8 /usr/bin/g++
 
 # Google
 RUN apt-get install -y --no-install-recommends \

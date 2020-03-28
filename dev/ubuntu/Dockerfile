@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
 
 RUN apt-get update
-RUN apt-get upgrade -y
 
 # basic tool
 RUN apt-get install -y --no-install-recommends vim git ack \
