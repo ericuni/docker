@@ -46,6 +46,10 @@ RUN apt-get install -y --no-install-recommends mariadb-server libmysqlclient-dev
   && curl -L https://tangentsoft.com/mysqlpp/releases/mysql++-3.2.5.tar.gz | tar xz --strip-components 1 \
   && ./configure --prefix=/usr && make -j 8 && make install && cd /opt && rm -rf pkg
 
+# redis
+RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev
+EXPOSE 6379
+
 # Python
 ## DEBIAN_FRONTEND=noninteractive http://blog.sina.com.cn/s/blog_72ef7bea0102vvvf.html
 ## run `dpkg-reconfigure tzdata` to change default time zone(interactive mode)
@@ -54,8 +58,4 @@ RUN apt-get install -y --no-install-recommends mariadb-server libmysqlclient-dev
 ##   python2.7 python-dev \
 ##   python-numpy python-scipy python-sympy python-pandas python-matplotlib \
 ##   python-tk python-setuptools
-
-# redis(tcl 8.5 or newer needed by Redis test)
-RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev tcl8.6
-EXPOSE 6379
 
