@@ -56,6 +56,6 @@ RUN apt-get install -y --no-install-recommends mariadb-server libmysqlclient-dev
 ##   python-tk python-setuptools
 
 # redis(tcl 8.5 or newer needed by Redis test)
-## RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev tcl8.6
-## EXPOSE 6379
+RUN apt-get install -y --no-install-recommends redis-server redis-tools libhiredis-dev tcl8.6
+EXPOSE 6379
 
