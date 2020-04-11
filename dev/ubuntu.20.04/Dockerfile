@@ -11,7 +11,7 @@ RUN export LC_ALL=C \
 
 # basic env
 RUN apt-get install -y curl openssl ca-certificates \
-  vim git ack \
+  vim git ack fd-find \
   && ulimit -c unlimited
 
 # C & C++
