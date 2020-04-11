@@ -14,16 +14,23 @@ RUN apt-get install -y curl openssl ca-certificates \
   vim git ack \
   && ulimit -c unlimited
 
-# C famliy
+# C & C++
 RUN apt-get install -y build-essential gcc g++ make cmake gdb \
   libev-dev libevent-dev libjsoncpp-dev libssl-dev \
   libcurl4-openssl-dev zlib1g-dev libsnappy-dev
+
+# python
+RUN apt-get install python2.7 \
+  && ln -sf /usr/bin/python2.7 /usr/bin/python
 
 # Google
 RUN apt-get install -y libprotobuf-dev protobuf-c-compiler \
   libgoogle-glog-dev libgflags-dev libgtest-dev \
   libgoogle-perftools-dev \
   libleveldb-dev
+
+# blade-build
+RUN apt-get install ninja-build
 
 # mysql
 RUN apt-get install -y mysql-server mysql-client
