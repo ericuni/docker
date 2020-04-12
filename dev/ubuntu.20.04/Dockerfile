@@ -20,7 +20,7 @@ RUN apt-get install -y build-essential gcc g++ make cmake gdb \
   libcurl4-openssl-dev zlib1g-dev libsnappy-dev
 
 # python
-RUN apt-get install python2.7 \
+RUN apt-get install -y python2.7 \
   && ln -sf /usr/bin/python2.7 /usr/bin/python
 
 # Google
@@ -30,7 +30,7 @@ RUN apt-get install -y libprotobuf-dev protobuf-c-compiler \
   libleveldb-dev
 
 # blade-build
-RUN apt-get install ninja-build
+RUN apt-get install -y ninja-build
 
 # mysql
 RUN apt-get install -y mysql-server mysql-client
