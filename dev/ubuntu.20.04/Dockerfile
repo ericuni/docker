@@ -39,3 +39,5 @@ RUN apt-get install -y mysql-server mysql-client
 RUN apt-get install -y redis
 EXPOSE 6379
 
+RUN apt-get install -y thrift-compiler
+
