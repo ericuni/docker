@@ -12,6 +12,7 @@ RUN export LC_ALL=C \
 # basic env
 RUN apt-get install -y curl openssl ca-certificates \
   vim git ack fd-find \
+  net-tools \
   && ulimit -c unlimited
 
 # C & C++
@@ -24,10 +25,15 @@ RUN apt-get install -y python2.7 \
   && ln -sf /usr/bin/python2.7 /usr/bin/python
 
 # Google
-RUN apt-get install -y libprotobuf-dev protobuf-c-compiler \
+RUN apt-get install -y libprotobuf-dev libprotoc-dev protobuf-compiler \
   libgoogle-glog-dev libgflags-dev libgtest-dev \
   libgoogle-perftools-dev \
   libleveldb-dev
+
+# brpc
+RUN mkdir /opt/pkg && cd /opt/pkg \
+  && curl -L https://codeload.github.com/apache/incubator-brpc/tar.gz/0.9.7 | tar xz --strip-components 1 \
+  && mkdir bld && cd bld && cmake -DWITH_GLOG=ON -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg
 
 # blade-build
 RUN apt-get install -y ninja-build
