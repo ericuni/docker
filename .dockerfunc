@@ -3,66 +3,75 @@
 
 # Helper Functions
 function dcleanup(){
-	docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
-	docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+  docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+  docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
 }
 
 function container_start(){
-	local container=$1
-	docker inspect $container 1>/dev/null 2>&1
-	if [ $? -eq 0 ]
-	then
-		local state=`docker inspect --format "{{.State.Running}}" $container`
-		if [ "x$state" == "xtrue" ]
-		then
-			echo "$container is running, removing..." >&2
-			docker stop $container
-			docker rm $container
-			return 1
-		else
-			echo "$container is not running, attaching..." >&2
-			docker start $container
-			docker attach $container
-			return 0
-		fi
-	else
-		echo "$container does not exist" >&2
-		return 1
-	fi
+  local container=$1
+  docker inspect $container 1>/dev/null 2>&1
+  if [ $? -eq 0 ]
+  then
+    local state=`docker inspect --format "{{.State.Running}}" $container`
+    if [ "x$state" == "xtrue" ]
+    then
+      echo "$container is running, removing..." >&2
+      docker stop $container
+      docker rm $container
+      return 1
+    else
+      echo "$container is not running, attaching..." >&2
+      docker start $container
+      docker attach $container
+      return 0
+    fi
+  else
+    echo "$container does not exist" >&2
+    return 1
+  fi
 }
 
 function container_remove(){
-	local container=$1
-	docker inspect $container 1>/dev/null 2>&1
-	if [ $? -eq 0 ]
-	then
-		echo "romving container $container" >&2
-		docker rm $container
-	else
-		echo "$container does not exist" >&2
-	fi
+  local container=$1
+  docker inspect $container 1>/dev/null 2>&1
+  if [ $? -eq 0 ]
+  then
+    echo "romving container $container" >&2
+    docker rm $container
+  else
+    echo "$container does not exist" >&2
+  fi
 }
 
 function relies_on(){
-	local containers=$@
+  local containers=$@
 
-	for container in $containers; do
-		local state=$(docker inspect --format "{{.State.Running}}" $container 2>/dev/null)
+  for container in $containers; do
+    local state=$(docker inspect --format "{{.State.Running}}" $container 2>/dev/null)
 
-		if [[ "$state" == "false" ]] || [[ "$state" == "" ]]; then
-			echo "$container is not running, starting it for you."
-			$container
-		fi
-	done
+    if [[ "$state" == "false" ]] || [[ "$state" == "" ]]; then
+      echo "$container is not running, starting it for you."
+      $container
+    fi
+  done
 }
 
 function dm(){
-	if [ "x$1" == "xinit" ]
-	then
-		## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
-		docker run -dt -v $HOME:/root -w /root -p 8022:22 --privileged --security-opt seccomp=unconfined --hostname dev --name dev ericuni/ubuntu:latest
-	else
-		docker exec -it $1 /bin/bash
-	fi
+  if [ "x$1" == "xinit" ]
+  then
+    ## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
+    docker run -dt \
+      -v $HOME:/root \
+      -v $HOME/container/.vscode-server:/root/.vscode-server \
+      -w /root \
+      -p 8022:22 \
+      --privileged \
+      --security-opt seccomp=unconfined \
+      --hostname dev \
+      --name dev \
+      ericuni/ubuntu:latest
+  else
+    docker exec -it $1 /bin/bash
+  fi
 }
 
