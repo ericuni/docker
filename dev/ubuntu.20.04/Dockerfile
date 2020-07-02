@@ -26,7 +26,7 @@ RUN apt-get install -y python2.7 \
 
 # Google
 RUN apt-get install -y libprotobuf-dev libprotoc-dev protobuf-compiler \
-  libgoogle-glog-dev libgflags-dev libgtest-dev \
+  libgoogle-glog-dev libgflags-dev libgtest-dev libgmock-dev \
   libgoogle-perftools-dev \
   libleveldb-dev
 
