@@ -21,7 +21,7 @@ RUN apt-get install -y build-essential gcc g++ make cmake gdb \
   libcurl4-openssl-dev zlib1g-dev libsnappy-dev
 
 # python
-RUN apt-get install -y python2.7 \
+RUN apt-get install -y python2.7 libpython3-dev \
   && ln -sf /usr/bin/python2.7 /usr/bin/python
 
 # Google
