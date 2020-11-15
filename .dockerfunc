@@ -59,12 +59,10 @@ function relies_on(){
 function dm(){
   if [ "x$1" == "xinit" ]
   then
-    container="$HOME/container"
     ## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
     docker run -dt \
-      -v $HOME:/root \
-      -v $container/.vscode-server:/root/.vscode-server \
-      -v $container/.vim:/root/.vim \
+      -v $HOME/.container:/root \
+      -v $HOME:/root/host \
       -w /root \
       -p 8022:22 \
       --privileged \
