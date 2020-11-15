@@ -31,6 +31,9 @@ RUN apt-get install -y libprotobuf-dev libprotoc-dev protobuf-compiler \
   libgoogle-perftools-dev \
   libleveldb-dev
 
+# go
+RUN apt-get install bison
+
 # brpc
 RUN mkdir /opt/pkg && cd /opt/pkg \
   && curl -L https://codeload.github.com/apache/incubator-brpc/tar.gz/0.9.7 | tar xz --strip-components 1 \
