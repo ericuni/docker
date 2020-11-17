@@ -11,8 +11,10 @@ RUN export LC_ALL=C \
 
 # basic env
 RUN apt-get install -y curl openssl ca-certificates \
-  vim git ack fd-find \
+  vim bison nodejs \
+  git ack fd-find \
   net-tools \
+  && curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   && ulimit -c unlimited
 
 # C & C++
@@ -30,9 +32,6 @@ RUN apt-get install -y libprotobuf-dev libprotoc-dev protobuf-compiler \
   libgtest-dev libgmock-dev libbenchmark-dev \
   libgoogle-perftools-dev \
   libleveldb-dev
-
-# go
-RUN apt-get install bison
 
 # brpc
 RUN mkdir /opt/pkg && cd /opt/pkg \
