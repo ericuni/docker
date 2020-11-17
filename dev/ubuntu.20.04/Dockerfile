@@ -11,11 +11,9 @@ RUN export LC_ALL=C \
 
 # basic env
 RUN apt-get install -y curl openssl ca-certificates \
-  vim bison nodejs \
+  vim bison \
   git ack fd-find \
   net-tools \
-  && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" \
   && ulimit -c unlimited
 
 # C & C++
