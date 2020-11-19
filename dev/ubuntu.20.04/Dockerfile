@@ -12,18 +12,17 @@ RUN export LC_ALL=C \
 # basic env
 RUN apt-get install -y curl openssl ca-certificates \
   vim bison \
-  git ack fd-find \
+  git ack fd-find autojump \
   net-tools \
   && ulimit -c unlimited
 
 # C & C++
-RUN apt-get install -y build-essential gcc g++ make cmake gdb \
+RUN apt-get install -y build-essential gcc g++ make cmake gdb clang-format clangd \
   libev-dev libevent-dev libjsoncpp-dev libssl-dev \
   libcurl4-openssl-dev zlib1g-dev libsnappy-dev
 
 # python
-RUN apt-get install -y python2.7 libpython3-dev \
-  && ln -sf /usr/bin/python2.7 /usr/bin/python
+RUN apt-get install -y libpython3-dev
 
 # Google
 RUN apt-get install -y libprotobuf-dev libprotoc-dev protobuf-compiler \
@@ -35,7 +34,8 @@ RUN apt-get install -y libprotobuf-dev libprotoc-dev protobuf-compiler \
 # brpc
 RUN mkdir /opt/pkg && cd /opt/pkg \
   && curl -L https://codeload.github.com/apache/incubator-brpc/tar.gz/0.9.7 | tar xz --strip-components 1 \
-  && mkdir bld && cd bld && cmake -DWITH_GLOG=ON -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install && cd /opt && rm -rf pkg
+  && mkdir bld && cd bld && cmake -DWITH_GLOG=ON -DCMAKE_INSTALL_PREFIX=/usr .. && make -j 8 && make install \
+  && cd /opt && rm -rf pkg
 
 # blade-build
 RUN apt-get install -y ninja-build
