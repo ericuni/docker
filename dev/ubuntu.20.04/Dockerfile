@@ -10,6 +10,7 @@ RUN export LC_ALL=C \
   && dpkg-reconfigure --frontend noninteractive tzdata
 
 # basic env
+## bison needed by gvm
 RUN apt-get install -y curl openssl ca-certificates \
   vim bison \
   git ack fd-find autojump \
