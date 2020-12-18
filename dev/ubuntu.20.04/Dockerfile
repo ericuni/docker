@@ -15,7 +15,7 @@ RUN apt-get install -y curl openssl ca-certificates \
   vim bison \
   git ack fd-find autojump \
   net-tools \
-  && ulimit -c unlimited && echo "core.%e.%p.%t" | sudo tee /proc/sys/kernel/core_pattern  ## enable coredump in docker
+  && ulimit -c unlimited && sysctl -w kernel.core_pattern="core.%e.%p.%t" ## && echo "core.%e.%p.%t" | sudo tee /proc/sys/kernel/core_pattern  ## enable coredump in docker
 
 # C & C++
 RUN apt-get install -y build-essential gcc g++ make cmake gdb clang-format clangd \
