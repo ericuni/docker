@@ -15,7 +15,7 @@ RUN apt-get install -y curl openssl ca-certificates \
   vim bison \
   git ack fd-find autojump \
   net-tools \
-  && ulimit -c unlimited && sysctl -w kernel.core_pattern="core.%e.%p.%t" ## && echo "core.%e.%p.%t" | sudo tee /proc/sys/kernel/core_pattern  ## enable coredump in docker
+  && ulimit -c unlimited
 
 # C & C++
 RUN apt-get install -y build-essential gcc g++ make cmake gdb clang-format clangd \
@@ -55,4 +55,8 @@ RUN apt install -y openssh-server \
   && echo 'root:123456' | chpasswd \
   && sed -i '/PermitRootLogin prohibit-password/c PermitRootLogin yes' /etc/ssh/sshd_config
 EXPOSE 22
+
+COPY ./init.sh /bin/init.sh
+RUN chmod +x /bin/init.sh
+CMD ["/bin/init.sh]
 
