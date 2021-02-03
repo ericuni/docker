@@ -18,12 +18,12 @@ RUN apt-get install -y curl openssl ca-certificates \
   && ulimit -c unlimited
 
 # C & C++
-RUN apt-get install -y build-essential gcc g++ make cmake gdb clang-format clangd \
+RUN apt-get install -y build-essential gcc-10 g++-10 make cmake gdb clang-format clangd-11 \
   libev-dev libevent-dev libjsoncpp-dev libssl-dev \
   libcurl4-openssl-dev zlib1g-dev libsnappy-dev
 
 # python
-RUN apt-get install -y libpython3-dev
+RUN apt-get install -y libpython3-dev python3-pip
 
 # Google
 RUN apt-get install -y libprotobuf-dev libprotoc-dev protobuf-compiler \
